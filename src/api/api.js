@@ -28,9 +28,9 @@ const processQueue = (error, token = null) => {
   failedQueue = []
 }
 
-const refreshTokenRequest = async () => {
+export const refreshTokenRequest = async () => {
   const refresh_token = localStorage.getItem('refresh_token')
-  if (!refresh_token) throw new Error('No refresh token available')
+  if (!refresh_token) throw new Error('Нет доступного refresh-токена')
 
   const clientId = process.env.NEXT_PUBLIC_CLIENT_ID
   const clientSecret = process.env.CLIENT_SECRET
@@ -60,12 +60,14 @@ api.interceptors.response.use(
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       if (isRefreshing) {
-        return new Promise(function (resolve, reject) {
+        return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject })
-        }).then((token) => {
-          originalRequest.headers.Authorization = `Bearer ${token}`
-          return api(originalRequest)
         })
+          .then((token) => {
+            originalRequest.headers.Authorization = `Bearer ${token}`
+            return api(originalRequest)
+          })
+          .catch((err) => Promise.reject(err))
       }
 
       originalRequest._retry = true

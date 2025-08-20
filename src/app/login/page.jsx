@@ -4,23 +4,28 @@ import AuthLayout from '@/components/layouts/AuthLayout'
 import Input from '@/components/ui/Input'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { login } from '@/api/authApi'
+import { useLogin } from '@/api/authApi'
 import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
   const router = useRouter()
   const [loginData, setLoginData] = useState({ username: '', password: '' })
+  const loginMutation = useLogin()
 
   const handleLogin = async (evt) => {
     evt.preventDefault()
-    if (!loginData.username || !loginData.password) return
-
-    try {
-      await login(loginData)
-      router.push('/profile')
-    } catch (err) {
-      console.error(err)
+    if (!loginData.username || !loginData.password) {
+      return
     }
+
+    loginMutation.mutate(loginData, {
+      onSuccess: () => {
+        router.push('/profile')
+      },
+      onError: (err) => {
+        console.error('Ошибка входа:', err)
+      },
+    })
   }
 
   return (
@@ -44,10 +49,11 @@ export default function LoginPage() {
         />
       </div>
       <button
-        className="bg-[#f7f21a] rounded-xl w-full py-[7px] text-lg mb-[10px] font-medium"
+        className="bg-[#f7f21a] rounded-xl w-full py-[7px] text-lg mb-[10px] font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
         onClick={handleLogin}
+        disabled={loginMutation.isPending}
       >
-        Войти
+        {loginMutation.isPending ? 'Вход...' : 'Войти'}
       </button>
       <Link
         href="/register"
@@ -55,6 +61,11 @@ export default function LoginPage() {
       >
         Зарегистрироваться
       </Link>
+      {loginMutation.isError && (
+        <p className="text-red-500 text-center">
+          Ошибка: {loginMutation.error.message}
+        </p>
+      )}
     </AuthLayout>
   )
 }

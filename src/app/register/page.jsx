@@ -1,6 +1,6 @@
 'use client'
 
-import { register } from '@/api/authApi'
+import { useRegister } from '@/api/authApi'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import Input from '@/components/ui/Input'
 import Link from 'next/link'
@@ -14,21 +14,32 @@ export default function RegisterPage() {
     password: '',
     role: 'user',
   })
-
   const [confirmPassword, setConfirmPassword] = useState('')
-
   const router = useRouter()
+  const registerMutation = useRegister()
 
   const handleRegister = async (evt) => {
     evt.preventDefault()
-    if (registerData.password !== confirmPassword) return
-
-    try {
-      await register(registerData)
-      router.push('/login')
-    } catch (err) {
-      console.error(err)
+    if (
+      !registerData.username ||
+      !registerData.email ||
+      !registerData.password
+    ) {
+      return
     }
+    if (registerData.password !== confirmPassword) {
+      alert('Пароли не совпадают')
+      return
+    }
+
+    registerMutation.mutate(registerData, {
+      onSuccess: () => {
+        router.push('/login')
+      },
+      onError: (err) => {
+        console.error('Ошибка регистрации:', err)
+      },
+    })
   }
 
   return (
@@ -59,17 +70,18 @@ export default function RegisterPage() {
           }
         />
         <Input
-          placeholder="Подвердите пароль"
+          placeholder="Подтвердите пароль"
           type="password"
           value={confirmPassword}
           setValue={(value) => setConfirmPassword(value)}
         />
       </div>
       <button
-        className="bg-[#f7f21a] rounded-xl w-full py-[7px] text-lg mb-[10px] font-medium"
+        className="bg-[#f7f21a] rounded-xl w-full py-[7px] text-lg mb-[10px] font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
         onClick={handleRegister}
+        disabled={registerMutation.isPending}
       >
-        Зарегистрироваться
+        {registerMutation.isPending ? 'Регистрация...' : 'Зарегистрироваться'}
       </button>
       <Link
         href="/login"
@@ -77,6 +89,11 @@ export default function RegisterPage() {
       >
         Войти
       </Link>
+      {registerMutation.isError && (
+        <p className="text-red-500 text-center">
+          Ошибка: {registerMutation.error.message}
+        </p>
+      )}
     </AuthLayout>
   )
 }
