@@ -1,6 +1,6 @@
 'use client'
 
-import { useRegister } from '@/api/authApi'
+import { useRegister } from '@/api/authApi/authApi'
 import AuthLayout from '@/components/layouts/AuthLayout'
 import Input from '@/components/ui/Input'
 import Link from 'next/link'
@@ -12,7 +12,6 @@ export default function RegisterPage() {
     username: '',
     email: '',
     password: '',
-    role: 'user',
   })
   const [confirmPassword, setConfirmPassword] = useState('')
   const router = useRouter()

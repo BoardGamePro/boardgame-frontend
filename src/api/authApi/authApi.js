@@ -1,29 +1,59 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api, { refreshTokenRequest } from './api'
+import { generateCodeChallenge, generateRandomString } from '@/utils/pkce'
 
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID
 const clientSecret = process.env.CLIENT_SECRET
 
 const authService = {
-  register: async ({ username, email, password, role }) => {
-    const res = await api.post('/api/auth/register', {
+  register: async ({ username, email, password }) => {
+    const res = await api.post('/auth/register', {
       username,
       email,
       password,
-      role,
     })
     return res.data
   },
 
-  login: async ({ username, password }) => {
+  login: async () => {
+    console.log('Starting PKCE login...')
+    const codeVerifier = generateRandomString(128)
+    localStorage.setItem('code_verifier', codeVerifier)
+    const codeChallenge = await generateCodeChallenge(codeVerifier)
+    console.log(
+      'Code verifier:',
+      codeVerifier,
+      'Code challenge:',
+      codeChallenge
+    )
+
+    const authParams = new URLSearchParams({
+      response_type: 'code',
+      client_id: clientId,
+      redirect_uri: 'http://localhost:3000/callbackAuth',
+      code_challenge: codeChallenge,
+      code_challenge_method: 'S256',
+      scope: 'games:read games:write',
+    })
+
+    window.location.assign(
+      `http://127.0.0.1:8080/oauth2/authorization?${authParams.toString()}`
+    )
+  },
+
+  exchangeCodeForToken: async (code) => {
+    const codeVerifier = localStorage.getItem('code_verifier')
+    if (!codeVerifier) throw new Error('Code verifier not found')
+
     const authHeader = btoa(`${clientId}:${clientSecret}`)
     const res = await api.post(
-      '/oauth2/token',
+      tokenUrl,
       new URLSearchParams({
-        grant_type: 'password',
-        username,
-        password,
-        scope: 'read write',
+        grant_type: 'authorization_code',
+        client_id: clientId,
+        code_verifier: codeVerifier,
+        code,
+        redirect_uri: 'http://localhost:3000/callbackAuth',
       }),
       {
         headers: {
@@ -33,6 +63,8 @@ const authService = {
       }
     )
     localStorage.setItem('access_token', res.data.access_token)
+    localStorage.setItem('refresh_token', res.data.refresh_token)
+    localStorage.removeItem('code_verifier')
     return res.data
   },
 
@@ -95,6 +127,16 @@ export const useLogin = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: authService.login,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['protected'])
+    },
+  })
+}
+
+export const useExchangeCode = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: authService.exchangeCodeForToken,
     onSuccess: () => {
       queryClient.invalidateQueries(['protected'])
     },

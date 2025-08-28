@@ -1,19 +1,29 @@
-import { gameMocks } from '@/app/mocks/dataGame'
+'use client'
+
+import { useGetGameByName } from '@/api/gamesApi/gamesApi'
 import PageLayout from '@/components/layouts/PageLayout'
 import Image from 'next/image'
 import React from 'react'
 
-export default async function GamePage({ params }) {
-  const { key } = await params
+export default function GamePage({ params }) {
+  const { key } = params
 
-  const game = gameMocks.find(
-    (g) => g.canonicalName === decodeURIComponent(key)
-  )
+  const { data: game, isLoading, isError } = useGetGameByName(key)
+
+  console.log(game)
 
   return (
     <PageLayout>
-      {!game ? (
-        <h1>Игра не найдена</h1>
+      {isLoading ? (
+        isError ? (
+          !game ? (
+            <h1>Игра не найдена</h1>
+          ) : (
+            <p className="mt-4 text-red-500">Ошибка при загрузке игры.</p>
+          )
+        ) : (
+          <p className="mt-4">Загрузка игр...</p>
+        )
       ) : (
         <>
           <h1 className="font-bold text-3xl">{game.title}</h1>
