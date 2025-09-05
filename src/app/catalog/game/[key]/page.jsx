@@ -3,14 +3,12 @@
 import { useGetGameByName } from '@/api/gamesApi/gamesApi'
 import PageLayout from '@/components/layouts/PageLayout'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function GamePage({ params }) {
   const { key } = params
-
   const { data: game, isLoading, isError } = useGetGameByName(key)
-
-  console.log(game)
 
   return (
     <PageLayout>
@@ -45,6 +43,18 @@ export default function GamePage({ params }) {
               <p>
                 для {game.minimumPlayers} - {game.maximumPlayers} игроков
               </p>
+              {game.sources.map(({ site, siteKey, siteUrl, siteRating }) => (
+                <div className="flex" key={siteKey}>
+                  <p className="mr-[15px]">{site} рейтинг: </p>
+                  <Link
+                    href={siteUrl}
+                    className="text-[#0070c0] underline decoration-[#0070c0] hover:no-underline"
+                    target="_blank"
+                  >
+                    {siteRating}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
           <h2 className="mb-[5px] font-semibold text-lg">Описание игры</h2>

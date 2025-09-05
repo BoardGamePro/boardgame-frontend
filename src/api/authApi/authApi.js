@@ -37,7 +37,7 @@ const authService = {
     })
 
     window.location.assign(
-      `http://127.0.0.1:8080/oauth2/authorization?${authParams.toString()}`
+      `http://127.0.0.1:8080/oauth2/authorize?${authParams.toString()}`
     )
   },
 
