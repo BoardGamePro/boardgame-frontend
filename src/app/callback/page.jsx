@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useExchangeCode } from '@/api/authApi/authApi'

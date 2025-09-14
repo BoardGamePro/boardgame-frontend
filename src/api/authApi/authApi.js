@@ -30,7 +30,7 @@ const authService = {
     const authParams = new URLSearchParams({
       response_type: 'code',
       client_id: clientId,
-      redirect_uri: 'http://localhost:3000/callbackAuth',
+      redirect_uri: 'http://localhost:3000/callback',
       code_challenge: codeChallenge,
       code_challenge_method: 'S256',
       scope: 'games:read games:write',
