@@ -1,23 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 import gamesApi from './api'
+import { useLocale } from 'next-intl'
 
 const getCurrentLang = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('lang') || 'ru'
-  }
-  return 'ru'
+  const locale = useLocale()
+
+  if (!locale) return 'ru'
 }
 
 const gameService = {
-  getAll: async () => {
-    const lang = getCurrentLang()
+  getAll: async (lang) => {
     const res = await gamesApi.get('/games', {
       params: { language: lang },
     })
     return res.data
   },
-  getByName: async (name) => {
-    const lang = getCurrentLang()
+  getByName: async (name, lang) => {
     const res = await gamesApi.get(`/games/${encodeURIComponent(name)}`, {
       params: { language: lang },
     })
@@ -26,16 +24,20 @@ const gameService = {
 }
 
 export const useGetAllGames = () => {
+  const locale = useLocale()
+
   return useQuery({
-    queryKey: ['games', getCurrentLang()],
-    queryFn: gameService.getAll,
+    queryKey: ['games', locale],
+    queryFn: () => gameService.getAll(locale),
   })
 }
 
 export const useGetGameByName = (name) => {
+  const locale = useLocale()
+
   return useQuery({
-    queryKey: ['games', name, getCurrentLang()],
-    queryFn: () => gameService.getByName(name),
+    queryKey: ['games', name, locale],
+    queryFn: () => gameService.getByName(name, locale),
     enabled: !!name,
   })
 }

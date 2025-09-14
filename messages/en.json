@@ -1,0 +1,23 @@
+{
+  "catalog": {
+    "title": "Game catalog",
+    "gamesNotFound": "No games found.",
+    "gameLoadError": "Error loading games.",
+    "gameLoad": "Load games..."
+  },
+  "gameCard": {
+    "linkButton": "View details"
+  },
+  "gamePage": {
+    "gameNotFound": "Game not found.",
+    "gameLoadError": "Error loading the game.",
+    "gameLoad": "Load game...",
+    "informationTitle": "Information",
+    "playersCount": "{playerFrom} - {playerTo} players",
+    "rating": "rating",
+    "gameDescription": "Game description"
+  },
+  "header": {
+    "signUpButton": "Sign up"
+  }
+}

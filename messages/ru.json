@@ -1,0 +1,23 @@
+{
+  "catalog": {
+    "title": "Каталог игр",
+    "gamesNotFound": "Игры не найдены.",
+    "gameLoadError": "Ошибка при загрузке игр.",
+    "gameLoad": "Загрузка игр..."
+  },
+  "gameCard": {
+    "linkButton": "Перейти"
+  },
+  "gamePage": {
+    "gameNotFound": "Игра не найдена.",
+    "gameLoadError": "Ошибка при загрузке игры.",
+    "gameLoad": "Загрузка игры...",
+    "informationTitle": "Информация",
+    "playersCount": "для {playerFrom} - {playerTo} игроков",
+    "rating": "рейтинг",
+    "gameDescription": "Описание игры"
+  },
+  "header": {
+    "signUpButton": "Зарегистрироваться"
+  }
+}
