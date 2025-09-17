@@ -1,28 +1,30 @@
-'use client'
-
-import { useGetAllGames } from '@/api/gamesApi/gamesApi'
 import PageLayout from '@/components/layouts/PageLayout'
 import GameCard from '@/components/widgets/GameCard'
-import React from 'react'
-import { useTranslations } from 'use-intl'
+import { getTranslations } from 'next-intl/server'
 
-export default function Catalog() {
-  const { data: games, isLoading, isError } = useGetAllGames()
-  const t = useTranslations('catalog')
+export default async function CatalogPage({ params }) {
+  const { locale } = params
+  const t = await getTranslations({ locale, namespace: 'catalog' })
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games?language=${locale}`,
+    {
+      next: { revalidate: 300 },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch games')
+  }
+
+  const games = await res.json()
 
   return (
     <PageLayout>
       <h1 className="font-bold text-2xl">{t('title')}</h1>
-      {isLoading ? (
-        isError ? (
-          !games || games.length === 0 ? (
-            <p className="mt-4">{t('gamesNotFound')}</p>
-          ) : (
-            <p className="mt-4 text-red-500">{t('gameLoadError')}</p>
-          )
-        ) : (
-          <p className="mt-4">{t('gameLoad')}</p>
-        )
+
+      {!games || games.result.length === 0 ? (
+        <p className="mt-4">{t('gamesNotFound')}</p>
       ) : (
         <div className="flex gap-[30px] mt-[30px] flex-wrap">
           {games.result.map((game) => (
