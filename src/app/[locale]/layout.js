@@ -1,9 +1,10 @@
-import { Montserrat } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import '../globals.css'
 import Providers from './Providers'
 import { NextIntlClientProvider } from 'next-intl'
+import { AuthProvider } from './AuthProvider'
 
-const montserrat = Montserrat({
+const roboto = Roboto({
   variable: '--font-montserrat',
   subsets: ['latin'],
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -19,9 +20,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} antialiased`}>
+      <body className={`${roboto.className} antialiased`}>
         <NextIntlClientProvider>
-          <Providers>{children}</Providers>
+          <Providers>
+            <AuthProvider>{children}</AuthProvider>
+          </Providers>
         </NextIntlClientProvider>
       </body>
     </html>

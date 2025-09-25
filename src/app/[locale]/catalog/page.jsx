@@ -3,7 +3,7 @@ import GameCard from '@/components/widgets/GameCard'
 import { getTranslations } from 'next-intl/server'
 
 export default async function CatalogPage({ params }) {
-  const { locale } = params
+  const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'catalog' })
 
   const res = await fetch(

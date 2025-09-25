@@ -1,7 +1,11 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ['s.tesera.ru'],
+  },
+}
 
 const withNextIntl = createNextIntlPlugin()
 

@@ -4,6 +4,8 @@
   --background: #f6f6f6;
   --foreground: #171717;
   --transition: all 0.3s ease-in-out;
+  --color-main: #1565c0;
+  --color-gray: #dbdbdb;
 }
 
 @theme inline {
@@ -27,7 +29,7 @@ body {
 
 body,
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: calc(1em + 8px);
 }
 

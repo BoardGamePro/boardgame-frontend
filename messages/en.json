@@ -5,9 +5,11 @@
     "gameLoadError": "Error loading games.",
     "gameLoad": "Load games..."
   },
+
   "gameCard": {
     "linkButton": "View details"
   },
+
   "gamePage": {
     "gameNotFound": "Game not found.",
     "gameLoadError": "Error loading the game.",
@@ -17,7 +19,26 @@
     "rating": "rating",
     "gameDescription": "Game description"
   },
+
   "header": {
-    "signUpButton": "Sign up"
+    "signUpButton": "Sign up",
+    "loginButton": "Login"
+  },
+
+  "loginPopup": {
+    "username": "Username",
+    "password": "Password",
+    "registerHint": "Don't have an account?",
+    "linkToRegister": "sign up",
+    "login": "Login"
+  },
+
+  "registerPopup": {
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "loginHint": "Already have an account?",
+    "linkToLogin": "Login",
+    "signUp": "Sign Up"
   }
 }

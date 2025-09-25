@@ -13,7 +13,7 @@ export default function Input({
     <input
       type={type}
       placeholder={placeholder}
-      className="bg-[#f6f6f6] rounded-xl mb-[10px] w-full px-[15px] py-[7px] text-lg focus:outline-none"
+      className="bg-white border-[var(--color-gray)] border-[2px] rounded-[15px] w-full px-[15px] py-[5px] text-[15px] font-bold focus:outline-none"
       value={value}
       onChange={(evt) => setValue(evt.target.value)}
       required={required}

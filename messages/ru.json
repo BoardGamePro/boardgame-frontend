@@ -5,9 +5,11 @@
     "gameLoadError": "Ошибка при загрузке игр.",
     "gameLoad": "Загрузка игр..."
   },
+
   "gameCard": {
     "linkButton": "Перейти"
   },
+
   "gamePage": {
     "gameNotFound": "Игра не найдена.",
     "gameLoadError": "Ошибка при загрузке игры.",
@@ -17,7 +19,26 @@
     "rating": "рейтинг",
     "gameDescription": "Описание игры"
   },
+
   "header": {
-    "signUpButton": "Зарегистрироваться"
+    "signUpButton": "Зарегистрироваться",
+    "loginButton": "Войти"
+  },
+
+  "loginPopup": {
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "registerHint": "у вас нет аккаунта?",
+    "linkToRegister": "зарегистрироваться",
+    "login": "Войти"
+  },
+
+  "registerPopup": {
+    "email": "Почта",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "loginHint": "У вас есть аккаунт?",
+    "linkToLogin": "Войти",
+    "signUp": "Зарегистрироваться"
   }
 }

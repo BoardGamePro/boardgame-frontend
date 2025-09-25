@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function GamePage({ params }) {
-  const { locale, key } = params
+  const { locale, key } = await params
   const t = await getTranslations({ locale, namespace: 'gamePage' })
 
   const res = await fetch(
