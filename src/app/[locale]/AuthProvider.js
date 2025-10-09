@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const { data, isLoading } = useQuery({
-    queryKey: ['protected', 'profile'],
+    queryKey: ['profile'],
     queryFn: authService.getProfile,
     enabled: !!accessToken,
   })
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
   }, [data])
 
   return (
-    <AuthContext.Provider value={{ user, isLoading }}>
+    <AuthContext.Provider value={{ user, isLoading, setUser }}>
       {children}
     </AuthContext.Provider>
   )

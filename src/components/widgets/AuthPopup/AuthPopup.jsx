@@ -32,13 +32,12 @@ export default function AuthPopup({
       onClick={handleOverlayClick}
     >
       <div
-        className="w-[434px] min-h-[380px] py-[29px] px-[66px] rounded-[16px] bg-white absolute top-[calc(100vh/2)] left-[calc(100vw/2)] -translate-x-1/2 -translate-y-1/2"
+        className="w-[434px] min-h-[380px] py-[29px] px-[66px] rounded-[16px] bg-white absolute top-[calc(100vh/2)] left-[calc(100vw/2)] -translate-x-1/2 -translate-y-1/2 text-black"
         ref={containerRef}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-end gap-[7px] justify-center">
-          Join the
-          <Image src="/icons/logo.svg" width={185} height={27} alt="logo" />
+        <div className="flex items-end gap-[7px] justify-center text-[var(--color-main)] text-[26px] font-semibold">
+          Join the DiceBook
         </div>
         <button
           type="button"

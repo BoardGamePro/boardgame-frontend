@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import api from './api'
+import { useAuth } from '@/app/[locale]/AuthProvider'
 
 export const authService = {
   register: async ({ username, email, password }) => {
@@ -20,13 +21,19 @@ export const authService = {
     })
 
     localStorage.setItem('accessToken', res.data['access_token'])
-    localStorage.setItem('refreshToken', res.data['refresh_token'])
+
+    const profile = await authService.getProfile()
+    return profile
   },
 
   getProfile: async () => {
     const res = await api.get('users/me')
 
     return res.data
+  },
+
+  logout: async () => {
+    await api.post('users/logout')
   },
 }
 
@@ -40,8 +47,22 @@ export const useLogin = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: authService.login,
+    onSuccess: (userData) => {
+      queryClient.setQueryData(['profile'], userData)
+    },
+  })
+}
+
+export const useLogout = () => {
+  const queryClient = useQueryClient()
+  const { setUser } = useAuth()
+
+  return useMutation({
+    mutationFn: authService.logout,
     onSuccess: () => {
-      queryClient.invalidateQueries(['protected'])
+      queryClient.removeQueries(['profile'])
+      setUser(null)
+      localStorage.removeItem('accessToken')
     },
   })
 }

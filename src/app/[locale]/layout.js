@@ -1,13 +1,13 @@
-import { Roboto } from 'next/font/google'
+import { Rubik } from 'next/font/google'
 import '../globals.css'
 import Providers from './Providers'
 import { NextIntlClientProvider } from 'next-intl'
 import { AuthProvider } from './AuthProvider'
 
-const roboto = Roboto({
-  variable: '--font-montserrat',
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
-  weight: ['100', '300', '400', '500', '700', '900'],
+  weight: ['300', '400', '500', '700', '900'],
   style: ['normal', 'italic'],
   display: 'swap',
 })
@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased`}>
+      <body className={`${rubik.className} antialiased`}>
         <NextIntlClientProvider>
           <Providers>
             <AuthProvider>{children}</AuthProvider>

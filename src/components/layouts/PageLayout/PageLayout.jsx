@@ -1,5 +1,5 @@
-import Footer from '@/components/widgets/Footer'
-import Header from '@/components/widgets/Header'
+import Footer from '@/components/ui/Footer'
+import Header from '@/components/ui/Header'
 import React from 'react'
 
 export default function PageLayout({ children }) {

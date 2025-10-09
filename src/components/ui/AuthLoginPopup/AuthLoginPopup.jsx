@@ -32,7 +32,7 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col items-center">
       <div className="flex flex-col gap-[26px] mt-[55px] mb-[18px] w-full">
         <Input
           placeholder={t('username')}
@@ -47,7 +47,7 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
       </div>
 
       <div className="flex text-center gap-[5px] mb-[29px]">
-        <p className="font-semibold text-[13px]">{t('registerHint')}</p>
+        <p className="font-semibold text-[13px">{t('registerHint')}</p>
         <button
           type="button"
           onClick={changeAuthState}

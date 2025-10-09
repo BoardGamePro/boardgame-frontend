@@ -17,12 +17,12 @@
     "informationTitle": "Information",
     "playersCount": "{playerFrom} - {playerTo} players",
     "rating": "rating",
-    "gameDescription": "Game description"
+    "gameDescription": "Description"
   },
 
   "header": {
     "signUpButton": "Sign up",
-    "loginButton": "Login"
+    "loginButton": "Sign in"
   },
 
   "loginPopup": {

@@ -3,7 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['s.tesera.ru'],
+    domains: ['s.tesera.ru', 'cf.geekdo-images.com'],
   },
 }
 
