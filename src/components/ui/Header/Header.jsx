@@ -1,20 +1,17 @@
 import LanguageMenu from '@/components/ui/LanguagesMenu'
 import { Link } from '@/i18n/navigation'
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
+
 import React from 'react'
 import ProfileMenu from '../../widgets/ProfileMenu'
 
 export default function Header() {
-  const t = useTranslations('header')
-
   return (
-    <header className="flex py-[11px] px-[calc((100%-1200px)/2)] bg-[var(--color-main)] text-[var(--color-light-neutral)]">
-      <Link href="/catalog" className="text-white font-semibold text-[32px]">
+    <header className="flex bg-(--color-main) px-[calc((100%-1200px)/2)] py-[11px] text-(--color-light-neutral)">
+      <Link href="/catalog" className="text-[32px] font-semibold text-white">
         DiceBook
       </Link>
 
-      <div className="ml-auto flex gap-[32px] items-center">
+      <div className="ml-auto flex items-center gap-[32px]">
         <LanguageMenu />
         <ProfileMenu />
       </div>

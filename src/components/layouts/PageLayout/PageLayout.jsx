@@ -6,7 +6,7 @@ export default function PageLayout({ children }) {
   return (
     <>
       <Header />
-      <main className="bg-white min-h-[100vh] py-[30px] px-[calc((100%-1080px)/2)]">
+      <main className="min-h-[100vh] bg-white px-[calc((100%-1080px)/2)] py-[30px]">
         {children}
       </main>
       <Footer />

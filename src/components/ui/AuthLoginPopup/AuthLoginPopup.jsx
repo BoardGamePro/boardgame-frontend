@@ -33,7 +33,7 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center">
-      <div className="flex flex-col gap-[26px] mt-[55px] mb-[18px] w-full">
+      <div className="mt-[55px] mb-[18px] flex w-full flex-col gap-[26px]">
         <Input
           placeholder={t('username')}
           value={userData.username}
@@ -46,18 +46,18 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
         />
       </div>
 
-      <div className="flex text-center gap-[5px] mb-[29px]">
-        <p className="font-semibold text-[13px">{t('registerHint')}</p>
+      <div className="mb-[29px] flex gap-[5px] text-center">
+        <p className="text-[13px] font-semibold">{t('registerHint')}</p>
         <button
           type="button"
           onClick={changeAuthState}
-          className="font-semibold text-[13px] text-[var(--color-main)] underline hover:no-underline"
+          className="text-[13px] font-semibold text-(--color-main) underline hover:no-underline"
         >
           {t('linkToRegister')}
         </button>
       </div>
 
-      <button className="font-medium text-[20px] text-white bg-[var(--color-main)] rounded-[16px] py-[8.5px] px-[9px] min-w-[126px] hover:scale-105 active:scale-95 transition-custom">
+      <button className="transition-custom min-w-[126px] rounded-[16px] bg-(--color-main) px-[9px] py-[8.5px] text-[20px] font-medium text-white hover:scale-105 active:scale-95">
         {t('login')}
       </button>
     </form>

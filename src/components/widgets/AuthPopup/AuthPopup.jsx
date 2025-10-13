@@ -28,21 +28,21 @@ export default function AuthPopup({
 
   return (
     <div
-      className="absolute bg-[rgba(0,0,0,0.12)] w-full h-full left-0 top-0 flex justify-center items-center z-100"
+      className="absolute top-0 left-0 z-100 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.12)]"
       onClick={handleOverlayClick}
     >
       <div
-        className="w-[434px] min-h-[380px] py-[29px] px-[66px] rounded-[16px] bg-white absolute top-[calc(100vh/2)] left-[calc(100vw/2)] -translate-x-1/2 -translate-y-1/2 text-black"
+        className="absolute top-[calc(100vh/2)] left-[calc(100vw/2)] min-h-[380px] w-[434px] -translate-x-1/2 -translate-y-1/2 rounded-[16px] bg-white px-[66px] py-[29px] text-black"
         ref={containerRef}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-end gap-[7px] justify-center text-[var(--color-main)] text-[26px] font-semibold">
+        <div className="flex items-end justify-center gap-[7px] text-[26px] font-semibold text-(--color-main)">
           Join the DiceBook
         </div>
         <button
           type="button"
           onClick={handleClosePopup}
-          className="absolute right-[12px] top-[12px] hover:scale-105 active:scale-95 transition-custom"
+          className="transition-custom absolute top-[12px] right-[12px] hover:scale-105 active:scale-95"
         >
           <Image
             src="/icons/close-icon.svg"

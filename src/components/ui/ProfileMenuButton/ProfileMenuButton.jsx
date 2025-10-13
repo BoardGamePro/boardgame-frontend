@@ -8,7 +8,7 @@ export default function ProfileMenuLButton({
   return (
     <button
       onClick={handleOpenAuthPopup}
-      className={`bg-none font-medium text-14 text-[var(--color-light-neutral)]`}
+      className={`bg-none text-[14px] font-medium text-(--color-light-neutral)`}
     >
       {textContent}
     </button>

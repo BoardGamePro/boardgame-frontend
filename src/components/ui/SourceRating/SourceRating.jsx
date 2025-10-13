@@ -13,7 +13,7 @@ export default function SourceRating({ rating }) {
           const percent = fraction * 100
 
           return (
-            <div key={i} className="relative w-[14px] h-[13px]">
+            <div key={i} className="relative h-[13px] w-[14px]">
               <StarRating fill="#E5E7EB" />
               <div
                 className="absolute top-0 left-0 h-full overflow-hidden"
@@ -25,7 +25,7 @@ export default function SourceRating({ rating }) {
           )
         })}
       </div>
-      <p className="text-[12px] text-[#242424] font-semibold">{rating}</p>
+      <p className="text-[12px] font-semibold text-[#242424]">{rating}</p>
     </div>
   )
 }

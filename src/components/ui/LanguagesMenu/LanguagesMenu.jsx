@@ -32,7 +32,7 @@ export default function LanguageMenu() {
     <div ref={menuRef} className="relative">
       <div
         onClick={() => setOpen(!open)}
-        className="py-[6px] pl-[38px] pr-[36px] bg-[var(--color-main)] text-[var(--color-light-neutral)] font-medium cursor-pointer select-none flex items-center"
+        className="flex cursor-pointer items-center bg-(--color-main) py-[6px] pr-[36px] pl-[38px] font-medium text-(--color-light-neutral) select-none"
       >
         {locale.toUpperCase()}
       </div>
@@ -50,18 +50,18 @@ export default function LanguageMenu() {
         width={12}
         height={12}
         alt="arrow-down"
-        className={`pointer-events-none absolute top-[10px] right-[6px] flex items-center transition-custom ${
+        className={`transition-custom pointer-events-none absolute top-[10px] right-[6px] flex items-center ${
           open ? 'rotate-180' : ''
         }`}
       />
 
       {open && (
-        <ul className="absolute left-0 right-0 bg-[var(--color-main)] text-[var(--color-light-neutral)] rounded-md shadow-lg z-10">
+        <ul className="absolute right-0 left-0 z-10 rounded-md bg-(--color-main) text-(--color-light-neutral) shadow-lg">
           {languages.map((lang) => (
             <li
               key={lang}
               onClick={() => handleSelect(lang)}
-              className="px-4 py-2 hover:bg-[var(--color-light-neutral)] hover:text-[var(--color-main)] cursor-pointer"
+              className="cursor-pointer px-4 py-2 hover:bg-(--color-light-neutral) hover:text-(--color-main)"
             >
               {lang.toUpperCase()}
             </li>

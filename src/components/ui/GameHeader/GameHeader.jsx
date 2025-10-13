@@ -15,27 +15,27 @@ export default function GameHeader({ preview, gameinfo }) {
     rating,
   } = gameinfo
   return (
-    <section className="w-full p-[10px] rounded-[8px] bg-[#242424] flex gap-[20px] text-white mb-[10px]">
+    <section className="mb-[10px] flex w-full gap-[20px] rounded-[8px] bg-[#242424] p-[10px] text-white">
       <Image src={preview} width={200} height={200} alt={title} />
 
-      <div className="flex flex-col gap-[20px] w-full">
-        <div className="flex justify-between w-full">
+      <div className="flex w-full flex-col gap-[20px]">
+        <div className="flex w-full justify-between">
           <div>
-            <h1 className="text-[32px] font-semibold mb-[10px]">
+            <h1 className="mb-[10px] text-[32px] font-semibold">
               {title} ({releaseYear})
             </h1>
             {summary && <p className="!text-[18px]/[1.4]">{summary}</p>}
           </div>
 
-          <div className="flex justify-center items-center min-w-[41px] h-[38px] bg-[url(/icons/star-icon.svg)] bg-no-repeat ml-[25px] pt-[6px] px-[12px]">
+          <div className="ml-[25px] flex h-[38px] min-w-[41px] items-center justify-center bg-[url(/icons/star-icon.svg)] bg-no-repeat px-[12px] pt-[6px]">
             <p className="!text-[12px]/[16px]">{rating}</p>
           </div>
         </div>
         <div className="flex">
-          <p className="px-[50px] border-r border-[[#CDCDCD]]">
+          <p className="border-r border-[[#CDCDCD]] px-[50px]">
             Age: {minimumAge}+
           </p>
-          <p className="px-[50px] border-r border-[[#CDCDCD]]">
+          <p className="border-r border-[[#CDCDCD]] px-[50px]">
             {minimumPlayers}-{maximumPlayers} Players
           </p>
         </div>
@@ -43,7 +43,7 @@ export default function GameHeader({ preview, gameinfo }) {
           {categories?.map((category) => (
             <p
               key={category}
-              className="!text-[12px]/[16px] text-[var(--color-dark-neutral)] px-[10px] py-[2px] bg-[#F2F2F2] rounded-[4px]"
+              className="rounded-[4px] bg-[#F2F2F2] px-[10px] py-[2px] !text-[12px]/[16px] text-(--color-dark-neutral)"
             >
               {category}
             </p>

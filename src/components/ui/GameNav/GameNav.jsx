@@ -24,18 +24,18 @@ export default function GameNav() {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [sections])
 
   return (
     <section>
-      <ul className="flex gap-[20px] text-[var(--color-neutral-foreground)] mb-[25px]">
+      <ul className="mb-[25px] flex gap-[20px] text-(--color-neutral-foreground)">
         {sections.map((id) => (
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`px-[10px] py-[4px] rounded-[13px] font-medium ${
+              className={`rounded-[13px] px-[10px] py-[4px] font-medium ${
                 active === id &&
-                'text-[#115EA3] border border-[#0F6CBD] bg-[#EBF3FC]'
+                'border border-[#0F6CBD] bg-[#EBF3FC] text-[#115EA3]'
               }`}
             >
               {id}
