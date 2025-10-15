@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #f2f2f2;
@@ -42,6 +43,15 @@ button {
 img,
 a {
   display: block;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+* {
+  scrollbar-width: thin;
 }
 
 @layer utilities {

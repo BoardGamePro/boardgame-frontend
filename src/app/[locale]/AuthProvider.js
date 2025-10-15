@@ -14,7 +14,9 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem('accessToken')
 
     setAccessToken(token)
-  }, [])
+
+    if (!accessToken) setUser(null)
+  }, [accessToken])
 
   const { data, isLoading } = useQuery({
     queryKey: ['profile'],

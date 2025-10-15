@@ -15,7 +15,7 @@ export default function ProfilePage() {
     if (!isLoading && !user) {
       router.push('/catalog')
     }
-  }, [user])
+  }, [user, isLoading, router])
 
   return (
     <PageLayout>
@@ -25,9 +25,10 @@ export default function ProfilePage() {
         <div className="flex flex-col items-center gap-[10px]">
           <p className="text-[24px] font-semibold">{user.username}</p>
           <p className="text-[20px]">{user.email}</p>
+          <p className="text-[20px]">{user.id}</p>
 
           <button
-            className=" text-[20px] text-[white] bg-red-500 rounded-xl px-[15px] py-[5px] hover:bg-red-400 transition-custom"
+            className="transition-custom rounded-xl bg-red-500 px-[15px] py-[5px] text-[20px] text-[white] hover:bg-red-400"
             onClick={() => logout()}
           >
             logout

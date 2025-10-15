@@ -6,12 +6,13 @@ import ProfileMenu from '../../widgets/ProfileMenu'
 
 export default function Header() {
   return (
-    <header className="flex bg-(--color-main) px-[calc((100%-1200px)/2)] py-[11px] text-(--color-light-neutral)">
+    <header className="flex bg-(--color-main) px-[40px] py-[11px] text-(--color-light-neutral)">
       <Link href="/catalog" className="text-[32px] font-semibold text-white">
         DiceBook
       </Link>
 
       <div className="ml-auto flex items-center gap-[32px]">
+        <Link href="/ai">AI</Link>
         <LanguageMenu />
         <ProfileMenu />
       </div>
