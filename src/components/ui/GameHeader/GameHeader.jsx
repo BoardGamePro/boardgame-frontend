@@ -2,8 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 
 export default function GameHeader({ preview, gameinfo }) {
-  console.log(gameinfo)
-
   const {
     title,
     releaseYear,

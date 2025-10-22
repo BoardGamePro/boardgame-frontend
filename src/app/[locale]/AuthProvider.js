@@ -10,23 +10,40 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)
   const [accessToken, setAccessToken] = useState(null)
 
-  useEffect(() => {
-    const token = localStorage.getItem('accessToken')
-
-    setAccessToken(token)
-
-    if (!accessToken) setUser(null)
-  }, [accessToken])
-
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['profile'],
     queryFn: authService.getProfile,
     enabled: !!accessToken,
+    retry: false,
   })
+
+  useEffect(() => {
+    const handleLogout = () => {
+      setAccessToken(null)
+      setUser(null)
+    }
+
+    const handleRefreshSuccess = () => {
+      refetch()
+    }
+
+    window.addEventListener('auth-logout', handleLogout)
+    window.addEventListener('auth-refresh-success', handleRefreshSuccess)
+
+    return () => {
+      window.removeEventListener('auth-logout', handleLogout)
+      window.removeEventListener('auth-refresh-success', handleRefreshSuccess)
+    }
+  }, [refetch])
 
   useEffect(() => {
     if (data) setUser(data)
   }, [data])
+
+  useEffect(() => {
+    const stored = localStorage.getItem('accessToken')
+    if (stored !== accessToken) setAccessToken(stored)
+  }, [accessToken])
 
   return (
     <AuthContext.Provider value={{ user, isLoading, setUser }}>

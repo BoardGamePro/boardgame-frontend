@@ -8,7 +8,6 @@ export const authService = {
       username,
       email,
       password,
-      role: 'user',
     })
 
     return res.data

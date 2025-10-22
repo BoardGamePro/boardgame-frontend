@@ -21,12 +21,12 @@ export default async function CatalogPage({ params }) {
 
   return (
     <PageLayout>
-      <h1 className="font-bold text-2xl">{t('title')}</h1>
+      <h1 className="text-2xl font-bold">{t('title')}</h1>
 
       {!games || games.result.length === 0 ? (
         <p className="mt-4">{t('gamesNotFound')}</p>
       ) : (
-        <div className="flex gap-[30px] mt-[30px] flex-wrap">
+        <div className="mt-[30px] flex flex-wrap gap-[30px]">
           {games.result.map((game) => (
             <GameCard key={game.canonicalName || game.id} gameInfo={game} />
           ))}

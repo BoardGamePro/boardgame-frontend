@@ -17,7 +17,9 @@ export default function ChatsListItem({ chatInfo }) {
 
     try {
       await deleteChat({ chatId: chatInfo.id })
-      router.push('/ai')
+      if (params?.id === chatInfo?.id) {
+        router.push('/ai')
+      }
     } catch (err) {
       console.error(err)
     }

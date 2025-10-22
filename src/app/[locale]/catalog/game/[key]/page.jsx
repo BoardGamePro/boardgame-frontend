@@ -5,7 +5,6 @@ import GameSection from '@/components/ui/GameSection'
 import SourceCard from '@/components/ui/SourceCard'
 import { getTranslations } from 'next-intl/server'
 import Image from 'next/image'
-import Link from 'next/link'
 
 export default async function GamePage({ params }) {
   const { locale, key } = await params
@@ -59,7 +58,7 @@ export default async function GamePage({ params }) {
           ))}
         </GameSection>
 
-        <div className="flex gap-[15px] flex-wrap">
+        <div className="flex flex-wrap gap-[15px]">
           {gallery.map((item, index) => (
             <Image
               src={item}
@@ -67,7 +66,7 @@ export default async function GamePage({ params }) {
               height={150}
               alt="gallery-item"
               key={index}
-              className="object-cover w-[150px] h-[150px]"
+              className="h-[150px] w-[150px] object-cover"
             />
           ))}
         </div>

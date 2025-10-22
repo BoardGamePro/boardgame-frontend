@@ -1,4 +1,3 @@
-import { useAuth } from '@/app/[locale]/AuthProvider'
 import axios from 'axios'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_AUTH_API_URL
@@ -27,7 +26,10 @@ api.interceptors.response.use(
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
-      originalRequest.url !== '/auth/logout'
+      originalRequest.url !== '/auth/logout' &&
+      originalRequest.url !== '/auth/refresh' &&
+      originalRequest.url !== '/auth/login' &&
+      originalRequest.url !== '/auth/register'
     ) {
       originalRequest._retry = true
 
@@ -35,21 +37,16 @@ api.interceptors.response.use(
         const res = await api.post('/auth/refresh', {})
 
         const newAccessToken = res.data.access_token
-
         localStorage.setItem('accessToken', newAccessToken)
+
+        window.dispatchEvent(new Event('auth-refresh-success'))
 
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`
         return api(originalRequest)
       } catch (refreshError) {
         localStorage.removeItem('accessToken')
-        const { user, setUser } = useAuth()
-        console.log(user)
-        setUser(null)
-
-        console.error(
-          'Refresh failed:',
-          refreshError.response?.data || refreshError.message
-        )
+        window.dispatchEvent(new Event('auth-logout'))
+        return Promise.reject(refreshError)
       }
     }
 

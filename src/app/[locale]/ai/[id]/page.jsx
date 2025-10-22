@@ -43,8 +43,10 @@ export default function AiChatPage() {
   })
 
   useEffect(() => {
-    setMessages(messagesData?.messages)
-  }, [messagesData])
+    if (messagesData?.messages.length >= messages.length) {
+      setMessages(messagesData?.messages)
+    }
+  }, [messagesData, messages])
 
   useEffect(() => {
     if (resultData?.queued === false) {
