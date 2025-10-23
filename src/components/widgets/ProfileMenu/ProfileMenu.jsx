@@ -27,15 +27,12 @@ export default function ProfileMenu() {
   return isLoading ? (
     <p>Loading...</p>
   ) : user ? (
-    <Link
-      href="/profile"
-      className="font-medium text-14 text-[var(--color-light-neutral)]"
-    >
+    <Link href="/profile" className="text-[14px] font-medium">
       {user.username}
     </Link>
   ) : (
     <>
-      <div className={`flex gap-[44px] bg-[var(--color-gray)]`} ref={menuRef}>
+      <div className={`flex gap-[44px]`} ref={menuRef}>
         <ProfileMenuLButton
           textContent={t('loginButton')}
           handleOpenAuthPopup={() => {

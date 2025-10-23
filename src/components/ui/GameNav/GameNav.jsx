@@ -1,29 +1,36 @@
 'use client'
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 export default function GameNav() {
-  const sections = ['Description', 'Sources', 'Images', 'Videos', 'Files']
+  const sections = ['Description', 'Images', 'Sources']
   const [active, setActive] = useState('Description')
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id)
+    const handleScroll = () => {
+      const center = window.innerHeight / 2
+      let closestId = null
+      let minDistance = Infinity
+
+      sections.forEach((id) => {
+        const el = document.getElementById(id)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          const elCenter = rect.top + rect.height / 2
+          const distance = Math.abs(center - elCenter)
+
+          if (distance < minDistance) {
+            minDistance = distance
+            closestId = id
           }
-        })
-      },
-      { threshold: 0.4 }
-    )
+        }
+      })
 
-    sections.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+      if (closestId) setActive(closestId)
+    }
 
-    return () => observer.disconnect()
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [sections])
 
   return (
@@ -33,25 +40,15 @@ export default function GameNav() {
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`rounded-[13px] px-[10px] py-[4px] font-medium ${
+              className={`px-[8px] py-[6px] ${
                 active === id &&
-                'border border-[#0F6CBD] bg-[#EBF3FC] text-[#115EA3]'
+                'border-b-2 border-[#5368BF] font-semibold text-[#242424]'
               }`}
             >
               {id}
             </a>
           </li>
         ))}
-        <li>
-          <button>
-            <Image
-              src="/icons/optional-icon.svg"
-              alt="optional-icon"
-              width={12.5}
-              height={2.5}
-            />
-          </button>
-        </li>
       </ul>
     </section>
   )

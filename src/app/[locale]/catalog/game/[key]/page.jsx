@@ -1,10 +1,10 @@
 import PageLayout from '@/components/layouts/PageLayout'
 import GameHeader from '@/components/ui/GameHeader/GameHeader'
+import GameImagesSection from '@/components/ui/GameImagesSection'
 import GameNav from '@/components/ui/GameNav'
 import GameSection from '@/components/ui/GameSection'
 import SourceCard from '@/components/ui/SourceCard'
 import { getTranslations } from 'next-intl/server'
-import Image from 'next/image'
 
 export default async function GamePage({ params }) {
   const { locale, key } = await params
@@ -18,7 +18,7 @@ export default async function GamePage({ params }) {
   )
 
   const imagesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games/${encodeURIComponent(key)}/images`,
+    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games/${encodeURIComponent(key)}/images?limit=100`,
     {
       next: { revalidate: 300 },
     }
@@ -35,41 +35,34 @@ export default async function GamePage({ params }) {
   const game = await res.json()
   const images = await imagesRes.json()
 
-  const preview = images.result[0].content.original.url
+  const preview = images?.result[0]?.content.original.url
 
   const gallery = images.result
     .map((imageInfo) => imageInfo.content.original.url)
     .filter((_, index) => index !== 0)
+    .map((img, index) => ({ img, id: index }))
 
   game.categories = ['fantasy', 'mythology', 'battle']
   game.rating = 3.4
 
   return (
     <PageLayout>
-      <div className="w-full max-w-[894px]">
+      <div className="w-full max-w-[1200px]">
         <GameHeader preview={preview} gameinfo={game} />
         <GameNav />
         <GameSection title={t('gameDescription')} sectionId="Description">
           <p>{game.description}</p>
         </GameSection>
-        <GameSection title="Sources" sectionId="Sources">
-          {game.sources?.map((source) => (
-            <SourceCard sourceInfo={source} key={source.siteKey} />
-          ))}
-        </GameSection>
 
-        <div className="flex flex-wrap gap-[15px]">
-          {gallery.map((item, index) => (
-            <Image
-              src={item}
-              width={150}
-              height={150}
-              alt="gallery-item"
-              key={index}
-              className="h-[150px] w-[150px] object-cover"
-            />
-          ))}
-        </div>
+        {gallery.length > 0 && <GameImagesSection gallery={gallery} />}
+
+        <GameSection title="Sources" sectionId="Sources">
+          <div className="flex gap-[40px]">
+            {game.sources?.map((source) => (
+              <SourceCard sourceInfo={source} key={source.siteKey} />
+            ))}
+          </div>
+        </GameSection>
       </div>
     </PageLayout>
   )

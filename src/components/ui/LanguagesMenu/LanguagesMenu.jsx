@@ -32,7 +32,7 @@ export default function LanguageMenu() {
     <div ref={menuRef} className="relative">
       <div
         onClick={() => setOpen(!open)}
-        className="flex cursor-pointer items-center bg-(--color-main) py-[6px] pr-[36px] pl-[38px] font-medium text-(--color-light-neutral) select-none"
+        className="flex cursor-pointer items-center py-[6px] pr-[36px] pl-[38px] font-medium select-none"
       >
         {locale.toUpperCase()}
       </div>
@@ -56,12 +56,12 @@ export default function LanguageMenu() {
       />
 
       {open && (
-        <ul className="absolute right-0 left-0 z-10 rounded-md bg-(--color-main) text-(--color-light-neutral) shadow-lg">
+        <ul className="absolute right-0 left-0 z-10 rounded-md bg-(--color-light-neutral) shadow-lg">
           {languages.map((lang) => (
             <li
               key={lang}
               onClick={() => handleSelect(lang)}
-              className="cursor-pointer px-4 py-2 hover:bg-(--color-light-neutral) hover:text-(--color-main)"
+              className="cursor-pointer px-4 py-2 hover:bg-(--color-text-default) hover:text-(--color-light-neutral)"
             >
               {lang.toUpperCase()}
             </li>
