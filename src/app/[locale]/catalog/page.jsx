@@ -26,7 +26,7 @@ export default async function CatalogPage({ params }) {
       {!games || games.result.length === 0 ? (
         <p className="mt-4">{t('gamesNotFound')}</p>
       ) : (
-        <div className="mt-[30px] flex flex-wrap gap-[30px]">
+        <div className="mt-[30px] grid grid-cols-3 gap-[30px]">
           {games.result.map((game) => (
             <GameCard key={game.canonicalName || game.id} gameInfo={game} />
           ))}

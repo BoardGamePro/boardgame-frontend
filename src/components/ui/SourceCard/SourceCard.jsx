@@ -47,7 +47,7 @@ export default function SourceCard({ sourceInfo }) {
             />
           </svg>
           <p className="text-[16px] text-(--color-text-default)">
-            {siteRating}
+            {Number(siteRating).toFixed(1)}
             <span className="text-[12px] text-(--color-text-gray)">/10</span>
           </p>
         </div>
