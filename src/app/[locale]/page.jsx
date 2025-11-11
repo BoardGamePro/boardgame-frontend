@@ -66,7 +66,7 @@ export default async function MainPage({ params }) {
             className="rounded-[10px] object-cover"
           />
         </section>
-        <RecomendationSection games={games.result.slice(0, 4)} />
+        <RecomendationSection games={games.result.slice(0, 12)} />
         <section className="bg-white py-[40px]">
           <div className="relative mx-auto flex h-[500px] w-[900px] justify-between overflow-hidden rounded-[20px] bg-[linear-gradient(90deg,#1B5CFB_0%,#9747FF_100%)] p-[52.5px_20px_52.5px_50px] before:absolute before:top-[-53px] before:left-[-50px] before:h-[106px] before:w-[106px] before:rounded-[50%] before:bg-[rgba(217,217,217,0.2)] after:absolute after:right-[-71px] after:bottom-[-63px] after:h-[171px] after:w-[171px] after:rounded-[50%] after:bg-[rgba(217,217,217,0.2)]">
             <div className="w-[390px]">
@@ -103,7 +103,7 @@ export default async function MainPage({ params }) {
               </div>
             </div>
 
-            <div className="flex h-[275px] w-[430px] flex-col gap-[10px] rounded-[20px] border border-[rgba(229,229,229,0.4)] bg-[rgba(201,200,211,0.2)] p-[19px_12px_29.5px] text-white">
+            <div className="mt-[31px] flex h-[275px] w-[430px] flex-col gap-[10px] rounded-[20px] border border-[rgba(229,229,229,0.4)] bg-[rgba(201,200,211,0.2)] p-[19px_12px_29.5px] text-white">
               <div className="w-fit rounded-[20px] bg-white p-[18.5px_38px_18.5px_20px]">
                 <p className="mb-[5px] font-bold text-(--color-text-gray)">
                   You

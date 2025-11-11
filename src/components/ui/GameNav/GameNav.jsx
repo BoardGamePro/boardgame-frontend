@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 
 export default function GameNav() {
-  const sections = ['Description', 'Images', 'Sources']
+  const sections = useMemo(() => ['Description', 'Images', 'Sources'], [])
   const [active, setActive] = useState('Description')
 
   useEffect(() => {

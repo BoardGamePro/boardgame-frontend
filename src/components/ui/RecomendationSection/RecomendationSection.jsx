@@ -38,19 +38,19 @@ export default function RecomendationSection({ games }) {
                 <path
                   d="M10 19L1 10L10 1"
                   stroke="#8A8894"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
             <button
               type="button"
               className="transition-custom flex h-[50px] w-[50px] items-center justify-center rounded-[50%] border border-[#E5E5E5] bg-white hover:opacity-80 disabled:pointer-events-none disabled:opacity-50"
-              disabled={currentSliderSection >= games.length}
+              disabled={currentSliderSection >= sliderSectionsCount - 1}
               onClick={() =>
                 setCurrentSliderSection((prev) =>
-                  prev < games.length ? prev + 1 : prev
+                  prev < sliderSectionsCount - 1 ? prev + 1 : prev
                 )
               }
             >
@@ -64,9 +64,9 @@ export default function RecomendationSection({ games }) {
                 <path
                   d="M1 19L10 10L1 1"
                   stroke="#8A8894"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>

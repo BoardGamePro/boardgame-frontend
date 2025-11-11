@@ -1,6 +1,6 @@
 {
   "catalog": {
-    "title": "Game catalog",
+    "title": "Browse Games",
     "gamesNotFound": "No games found.",
     "gameLoadError": "Error loading games.",
     "gameLoad": "Load games..."

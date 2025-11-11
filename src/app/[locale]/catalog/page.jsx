@@ -1,5 +1,6 @@
 import PageLayout from '@/components/layouts/PageLayout'
-import GameCard from '@/components/widgets/GameCard'
+import FilterSidebar from '@/components/widgets/FilterSidebar'
+import GamesGrid from '@/components/widgets/GamesGrid'
 import { getTranslations } from 'next-intl/server'
 
 export default async function CatalogPage({ params }) {
@@ -21,17 +22,17 @@ export default async function CatalogPage({ params }) {
 
   return (
     <PageLayout>
-      <h1 className="text-2xl font-bold">{t('title')}</h1>
+      <h1 className="text-[32px] font-semibold text-black">{t('title')}</h1>
+      <p className="text-[18px] text-[#595959]">Found {games?.total} games</p>
 
-      {!games || games.result.length === 0 ? (
-        <p className="mt-4">{t('gamesNotFound')}</p>
-      ) : (
-        <div className="mt-[30px] grid grid-cols-3 gap-[30px]">
-          {games.result.map((game) => (
-            <GameCard key={game.canonicalName || game.id} gameInfo={game} />
-          ))}
-        </div>
-      )}
+      <div className="mt-[30px] grid grid-cols-[280px_1fr] gap-[30px]">
+        <FilterSidebar />
+        {!games || games.result.length === 0 ? (
+          <p>{t('gamesNotFound')}</p>
+        ) : (
+          <GamesGrid games={games} />
+        )}
+      </div>
     </PageLayout>
   )
 }
