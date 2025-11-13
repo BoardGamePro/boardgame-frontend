@@ -11,14 +11,14 @@ export default async function GamePage({ params }) {
   const t = await getTranslations({ locale, namespace: 'gamePage' })
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games/${encodeURIComponent(key)}?language=${locale}`,
+    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(key)}?language=${locale}`,
     {
       next: { revalidate: 300 },
     }
   )
 
   const imagesRes = await fetch(
-    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games/${encodeURIComponent(key)}/images?limit=100`,
+    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(key)}/images?limit=100`,
     {
       next: { revalidate: 300 },
     }

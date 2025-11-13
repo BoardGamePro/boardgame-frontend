@@ -9,7 +9,7 @@ export default async function MainPage({ params }) {
   const { locale } = await params
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games?language=${locale}`,
+    `${process.env.GAMES_API_URL}/games?language=${locale}`,
     {
       next: { revalidate: 300 },
     }

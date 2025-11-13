@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: boardgame
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    networks:
+      - boardgame-network
+
+networks:
+  boardgame-network:
+    external: true
+    name: boardgame-network

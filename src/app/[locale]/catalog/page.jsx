@@ -8,7 +8,7 @@ export default async function CatalogPage({ params }) {
   const t = await getTranslations({ locale, namespace: 'catalog' })
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_GAMES_API_URL}/games?language=${locale}`,
+    `${process.env.GAMES_API_URL}/games?language=${locale}`,
     {
       next: { revalidate: 300 },
     }
