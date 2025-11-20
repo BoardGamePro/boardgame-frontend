@@ -4,11 +4,11 @@ export const filterTypes = {
     values: [
       {
         text: '1 player',
-        value: '1',
+        value: ',1',
       },
       {
         text: '2 players',
-        value: '2',
+        value: ',2',
       },
       {
         text: '3-4 players',
@@ -20,7 +20,7 @@ export const filterTypes = {
       },
       {
         text: '7+ players',
-        value: '7',
+        value: '7,',
       },
     ],
   },

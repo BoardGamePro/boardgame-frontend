@@ -1,13 +1,9 @@
 'use client'
 
 import { filterTypes } from '@/consts/filterTypes'
-import React, { useState } from 'react'
 
-export default function YearCategory() {
-  const [yearsRange, setYearsRange] = useState({
-    minYear: filterTypes.year.min,
-    maxYear: filterTypes.year.max,
-  })
+export default function YearCategory({ value, onChange }) {
+  const { minYear, maxYear } = value
 
   return (
     <div className="border-b border-[#C7C7C7] px-[20px]">
@@ -18,36 +14,34 @@ export default function YearCategory() {
         <input
           type="number"
           name="min-year"
-          value={yearsRange.minYear}
+          value={minYear}
           min={filterTypes.year.min}
-          max={yearsRange.maxYear}
-          onChange={(evt) =>
-            setYearsRange((prev) => ({
-              ...prev,
-              minYear:
-                evt.target.value >= 0 && evt.target.value.length <= 4
-                  ? evt.target.value
-                  : prev.minYear,
-            }))
-          }
+          max={maxYear}
+          onChange={(evt) => {
+            const val =
+              evt.target.value >= 0 && evt.target.value.length <= 4
+                ? evt.target.value
+                : minYear
+
+            onChange({ minYear: val, maxYear: maxYear })
+          }}
           className="w-[80px] rounded-[100px] border border-[#C7C7C7] p-[6px_10px]"
         />
         <span className="h-[1px] w-[10px] rounded-[1px] bg-[#C7C7C7]"></span>
         <input
           type="number"
           name="max-year"
-          value={yearsRange.maxYear}
-          min={yearsRange.minYear}
+          value={maxYear}
+          min={minYear}
           max={filterTypes.year.max}
-          onChange={(evt) =>
-            setYearsRange((prev) => ({
-              ...prev,
-              maxYear:
-                evt.target.value >= 0 && evt.target.value.length <= 4
-                  ? evt.target.value
-                  : prev.maxYear,
-            }))
-          }
+          onChange={(evt) => {
+            const val =
+              evt.target.value >= 0 && evt.target.value.length <= 4
+                ? evt.target.value
+                : maxYear
+
+            onChange({ minYear: minYear, maxYear: val })
+          }}
           className="w-[80px] rounded-[100px] border border-[#C7C7C7] p-[6px_10px]"
         />
       </fieldset>

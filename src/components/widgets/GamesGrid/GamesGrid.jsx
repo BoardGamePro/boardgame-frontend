@@ -1,29 +1,51 @@
 'use client'
 
 import GridSwitcher from '@/components/ui/GridSwitcher'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import GameCard from '../GameCard'
 import { sortingTypes } from '@/consts/sortingTypes'
+import CatalogPageSwitcher from '@/components/ui/CatalogPageSwitcher/CatalogPageSwitcher'
+import { useSearchParams } from 'next/navigation'
+import { useRouter } from '@/i18n/navigation'
 
-export default function GamesGrid({ games }) {
+export default function GamesGrid({ games, sortBy }) {
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [viewMode, setViewMode] = useState('grid')
   const [sortState, setSortState] = useState({
     selectedSort: null,
     sortOrder: null,
   })
 
+  const pages = Math.ceil(games.total / 9)
+
   const onSortClick = (value) => {
-    setSortState((prev) => {
-      if (prev.selectedSort === value) {
-        return {
-          selectedSort: value,
-          sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc',
-        }
-      } else {
-        return { selectedSort: value, sortOrder: 'asc' }
-      }
-    })
+    const newSortState =
+      sortState.selectedSort === value
+        ? {
+            selectedSort: value,
+            sortOrder: sortState.sortOrder === 'asc' ? 'desc' : 'asc',
+          }
+        : { selectedSort: value, sortOrder: 'asc' }
+
+    setSortState(newSortState)
+
+    const params = new URLSearchParams(searchParams.toString())
+    params.set(
+      'sortBy',
+      `${newSortState.selectedSort}-${newSortState.sortOrder}`
+    )
+    router.push(`?${params.toString()}`)
   }
+
+  useEffect(() => {
+    if (sortBy) {
+      const [selectedSort, sortOrder] = sortBy.split('-')
+      setSortState({ selectedSort, sortOrder })
+    } else {
+      setSortState({ selectedSort: null, sortOrder: null })
+    }
+  }, [sortBy])
 
   return (
     <div
@@ -54,6 +76,7 @@ export default function GamesGrid({ games }) {
           viewMode={viewMode}
         />
       ))}
+      <CatalogPageSwitcher pages={pages} />
     </div>
   )
 }
