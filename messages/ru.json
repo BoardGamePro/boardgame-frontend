@@ -26,11 +26,15 @@
   },
 
   "loginPopup": {
-    "username": "Имя пользователя",
+    "username": "Почта или имя пользователя",
     "password": "Пароль",
-    "registerHint": "у вас нет аккаунта?",
-    "linkToRegister": "зарегистрироваться",
-    "login": "Войти"
+    "registerHint": "У вас нет аккаунта?",
+    "linkToRegister": "Зарегистрироваться!",
+    "login": "Войти",
+    "Enter your email or username": "Введите почту или имя пользователя",
+    "Enter your password": "Введите пароль",
+    "signIn": "Войти",
+    "Forgot password?": "Забыли пароль?"
   },
 
   "registerPopup": {
@@ -39,6 +43,10 @@
     "password": "Пароль",
     "loginHint": "У вас есть аккаунт?",
     "linkToLogin": "Войти",
-    "signUp": "Зарегистрироваться"
+    "signUp": "Зарегистрироваться",
+    "Enter your username": "Введите имя пользователя",
+    "Enter your email": "Введите вашу почту",
+    "Enter your password": "Введите пароль",
+    "Confirm your password": "Подтвердите пароль"
   }
 }
