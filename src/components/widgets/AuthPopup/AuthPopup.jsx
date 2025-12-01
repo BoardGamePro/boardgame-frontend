@@ -12,9 +12,7 @@ export default function AuthPopup({
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        handleClosePopup()
-      }
+      if (e.key === 'Escape') handleClosePopup()
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
@@ -28,43 +26,38 @@ export default function AuthPopup({
 
   return (
     <div
-      className="absolute top-0 left-0 z-100 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.12)]"
+      className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40"
       onClick={handleOverlayClick}
     >
       <div
-        className="absolute top-[calc(100vh/2)] left-[calc(100vw/2)] min-h-[380px] w-[434px] -translate-x-1/2 -translate-y-1/2 rounded-[16px] bg-white px-[66px] py-[29px] text-black"
         ref={containerRef}
         onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-[562px] rounded-[10px] bg-white px-[41px] py-[60px] shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
       >
-        <div className="flex items-end justify-center gap-[7px] text-[26px] font-semibold text-(--color-main)">
-          Join the DiceBook
-        </div>
         <button
           type="button"
           onClick={handleClosePopup}
-          className="transition-custom absolute top-[12px] right-[12px] hover:scale-105 active:scale-95"
+          className="absolute top-5 right-5"
         >
           <Image
-            src="/icons/close-icon.svg"
-            width={24}
-            height={24}
+            src="/icons/cross.svg"
+            width={26}
+            height={26}
             alt="close-icon"
           />
         </button>
 
-        <div className="flex flex-col items-center">
-          {authState === 'login' ? (
-            <AuthLoginPopup
-              changeAuthState={() => changeAuthState('register')}
-              handleClosePopup={handleClosePopup}
-            />
-          ) : (
-            <AuthRegisterPopup
-              changeAuthState={() => changeAuthState('login')}
-              handleClosePopup={handleClosePopup}
-            />
-          )}
-        </div>
+        {authState === 'login' ? (
+          <AuthLoginPopup
+            changeAuthState={() => changeAuthState('register')}
+            handleClosePopup={handleClosePopup}
+          />
+        ) : (
+          <AuthRegisterPopup
+            changeAuthState={() => changeAuthState('login')}
+            handleClosePopup={handleClosePopup}
+          />
+        )}
       </div>
     </div>
   )

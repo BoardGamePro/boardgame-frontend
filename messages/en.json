@@ -26,11 +26,15 @@
   },
 
   "loginPopup": {
-    "username": "Username",
+    "username": "Email or Username",
     "password": "Password",
     "registerHint": "Don't have an account?",
-    "linkToRegister": "sign up",
-    "login": "Login"
+    "linkToRegister": "Sign up!",
+    "login": "Login",
+    "Enter your email or username": "Enter your email or username",
+    "Enter your password": "Enter your password",
+    "signIn": "Sign in",
+    "Forgot password?": "Forgot password?"
   },
 
   "registerPopup": {
@@ -39,6 +43,10 @@
     "password": "Password",
     "loginHint": "Already have an account?",
     "linkToLogin": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign up",
+    "Enter your username": "Enter your username",
+    "Enter your email": "Enter your email",
+    "Enter your password": "Enter your password",
+    "Confirm your password": "Confirm your password"
   }
 }
