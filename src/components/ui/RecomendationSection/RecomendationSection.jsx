@@ -2,8 +2,10 @@
 
 import GameCard from '@/components/widgets/GameCard'
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function RecomendationSection({ games }) {
+  const t = useTranslations('mainPage')
   const sliderSectionsCount = Math.ceil(games.length / 3)
   const [currentSliderSection, setCurrentSliderSection] = useState(0)
 
@@ -12,10 +14,10 @@ export default function RecomendationSection({ games }) {
       <div className="flex justify-between">
         <div>
           <h2 className="mb-[10px] text-[32px] font-semibold">
-            Recomended for You
+            {t('recommendedTitle')}
           </h2>
           <p className="mb-[30px] !text-[18px]/[1.4] text-[#595959]">
-            Personalized game suggestions based on your preferences
+            {t('recommendedSubtitle')}
           </p>
         </div>
         {games.length > 3 && (

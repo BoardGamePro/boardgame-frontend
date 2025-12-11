@@ -1,10 +1,14 @@
 'use client'
 
-import { filterTypes } from '@/consts/filterTypes'
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { getFilterTypes } from '@/consts/filterTypes'
 
 export default function RateCategory() {
-  const [rating, setRatig] = useState(filterTypes.rate.min)
+  const t = useTranslations()
+  const filterTypes = getFilterTypes(t)
+
+  const [rating, setRating] = useState(filterTypes.rate.min)
 
   return (
     <div className="px-[20px]">
@@ -18,7 +22,7 @@ export default function RateCategory() {
           value={rating}
           min={filterTypes.rate.min}
           onChange={(evt) =>
-            setRatig((prev) =>
+            setRating((prev) =>
               evt.target.value >= filterTypes.rate.min &&
               evt.target.value <= filterTypes.rate.max
                 ? evt.target.value

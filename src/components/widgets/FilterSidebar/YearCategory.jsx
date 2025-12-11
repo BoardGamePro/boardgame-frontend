@@ -1,25 +1,30 @@
 'use client'
 
-import { filterTypes } from '@/consts/filterTypes'
 import React, { useState } from 'react'
+import { useTranslations } from 'next-intl'
+import { getFilterTypes } from '@/consts/filterTypes'
 
 export default function YearCategory() {
+  const t = useTranslations()
+  const filterTypes = getFilterTypes(t)
+  const yearCategory = filterTypes.year
+
   const [yearsRange, setYearsRange] = useState({
-    minYear: filterTypes.year.min,
-    maxYear: filterTypes.year.max,
+    minYear: yearCategory.min,
+    maxYear: yearCategory.max,
   })
 
   return (
     <div className="border-b border-[#C7C7C7] px-[20px]">
       <h3 className="mb-[10px] bg-[image:url('/icons/calendar.svg')] bg-position-[left_center] bg-no-repeat pl-[26px] text-[18px] font-semibold">
-        {filterTypes.year.name}
+        {yearCategory.name}
       </h3>
       <fieldset className="mb-[20px] flex items-center gap-[10px]">
         <input
           type="number"
           name="min-year"
           value={yearsRange.minYear}
-          min={filterTypes.year.min}
+          min={yearCategory.min}
           max={yearsRange.maxYear}
           onChange={(evt) =>
             setYearsRange((prev) => ({
@@ -38,7 +43,7 @@ export default function YearCategory() {
           name="max-year"
           value={yearsRange.maxYear}
           min={yearsRange.minYear}
-          max={filterTypes.year.max}
+          max={yearCategory.max}
           onChange={(evt) =>
             setYearsRange((prev) => ({
               ...prev,

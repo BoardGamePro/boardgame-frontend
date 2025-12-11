@@ -34,10 +34,10 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
     <div className="w-full">
       {/* Title */}
       <h2 className="h-[25px] text-center text-[18px] font-bold">
-        Sign in to your account
+        {t('login')}
       </h2>
       <p className="mt-[30px] h-[24px] text-center text-[15px] text-(--color-text-gray)">
-        Access your saved games, ratings and favorites
+        {t('loginHint')}
       </p>
 
       <form
@@ -47,10 +47,10 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
         {/* Username */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Email or Username
+            {t('username')}
           </label>
           <Input
-            placeholder="Enter your email or username"
+            placeholder={t('Enter your email or username')}
             value={userData.username}
             setValue={(value) => setData(value, 'username')}
             icon="/icons/envelope.svg"
@@ -60,11 +60,11 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
         {/* Password + Forgot password */}
         <div className="flex flex-col">
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Password
+            {t('password')}
           </label>
 
           <InputPassword
-            placeholder="Enter your password"
+            placeholder={t('Enter your password')}
             value={userData.password}
             setValue={(value) => setData(value, 'password')}
             icon="/icons/fi-rs-lock.svg"
@@ -74,7 +74,7 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
             type="button"
             className="mt-[10px] h-[16px] self-end text-[13px] font-semibold text-(--foreground)"
           >
-            Forgot password?
+            {t('Forgot password?')}
           </button>
         </div>
 
@@ -85,13 +85,13 @@ export default function AuthLoginPopup({ changeAuthState, handleClosePopup }) {
 
         {/* Bottom switch */}
         <div className="h-[24px] text-center text-[14px] text-(--color-text-gray)">
-          Don’t have an account?{' '}
+          {t('registerHint')}{' '}
           <button
             type="button"
             onClick={changeAuthState}
             className="font-semibold text-(--color-text-default)"
           >
-            Sign up!
+            {t('linkToRegister')}
           </button>
         </div>
       </form>

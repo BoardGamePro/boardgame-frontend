@@ -3,9 +3,13 @@
 import GridSwitcher from '@/components/ui/GridSwitcher'
 import React, { useState } from 'react'
 import GameCard from '../GameCard'
-import { sortingTypes } from '@/consts/sortingTypes'
+import { getSortingTypes } from '@/consts/sortingTypes'
+import { useTranslations } from 'next-intl'
 
 export default function GamesGrid({ games }) {
+  const t = useTranslations()
+  const sortingTypes = getSortingTypes(t)
+
   const [viewMode, setViewMode] = useState('grid')
   const [sortState, setSortState] = useState({
     selectedSort: null,

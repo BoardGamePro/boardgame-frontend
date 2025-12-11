@@ -1,45 +1,24 @@
-export const footerNavCategories = [
+export const getFooterNavCategories = (t) => [
   {
-    title: 'ABOUT',
+    title: t('about.title'),
     items: [
-      {
-        name: 'About the Project',
-        link: '/about',
-      },
-      {
-        name: 'Team',
-        link: '/team',
-      },
+      { name: t('about.aboutProject'), link: '/about' },
+      { name: t('about.team'), link: '/team' },
     ],
   },
   {
-    title: 'POLICIES',
+    title: t('policies.title'),
     items: [
-      {
-        name: 'Terms of Use',
-        link: '/terms',
-      },
-      {
-        name: 'Privacy Policy',
-        link: '/privacy',
-      },
-      {
-        name: 'Data Sources',
-        link: '/sources',
-      },
+      { name: t('policies.terms'), link: '/terms' },
+      { name: t('policies.privacy'), link: '/privacy' },
+      { name: t('policies.sources'), link: '/sources' },
     ],
   },
   {
-    title: 'CONTACTS',
+    title: t('contacts.title'),
     items: [
-      {
-        name: 'Feedback Form',
-        link: '/feedback',
-      },
-      {
-        name: 'Email Support',
-        link: '/support',
-      },
+      { name: t('contacts.feedback'), link: '/feedback' },
+      { name: t('contacts.support'), link: '/support' },
     ],
   },
 ]

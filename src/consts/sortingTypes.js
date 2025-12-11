@@ -1,10 +1,10 @@
-export const sortingTypes = [
+export const getSortingTypes = (t) => [
   {
-    text: 'by rating',
+    text: t('sorting.byRating'),
     value: 'rating',
   },
   {
-    text: 'by year',
+    text: t('sorting.byYear'),
     value: 'year',
   },
 ]
