@@ -4,7 +4,7 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import { getFilterTypes } from '@/consts/filterTypes'
 
-export default function PlayersCategory() {
+export default function PlayersCategory({ value, onChange }) {
   const t = useTranslations()
   const filterTypes = getFilterTypes(t)
   const playersCategory = filterTypes.players
@@ -15,11 +15,13 @@ export default function PlayersCategory() {
         {playersCategory.name}
       </h3>
       <fieldset className="mb-[20px] flex flex-col gap-[10px]">
-        {playersCategory.values.map(({ text, value }, index) => (
-          <label key={`${value}-${index}`} className="flex gap-[8px]">
+        {playersCategory.values.map(({ text, value: val }, index) => (
+          <label key={`${val}-${index}`} className="flex gap-[8px]">
             <input
-              type="checkbox"
-              value={value}
+              type="radio"
+              value={val}
+              onChange={() => onChange(val)}
+              checked={val === value}
               name="players"
               className="h-[16px] w-[16px] accent-(--color-accent)"
             />

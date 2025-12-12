@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import api from './api'
 import { useAuth } from '@/app/[locale]/AuthProvider'
 
@@ -34,6 +34,20 @@ export const authService = {
   logout: async () => {
     await api.post('users/logout')
   },
+
+  getUserById: async (userId) => {
+    const res = await api.get(`/users/id/${userId}`)
+
+    return res.data
+  },
+
+  changeProfile: async ({ bio, isProfilePublic, isPublicCollection }) => {
+    await api.patch('/users/me/profile', {
+      bio,
+      is_profile_public: isProfilePublic,
+      is_collection_public: isPublicCollection,
+    })
+  },
 }
 
 export const useRegister = () => {
@@ -62,6 +76,25 @@ export const useLogout = () => {
       queryClient.removeQueries(['profile'])
       setUser(null)
       localStorage.removeItem('accessToken')
+    },
+  })
+}
+
+export const useGetUserById = (userId) => {
+  return useQuery({
+    queryKey: ['userId', userId],
+    queryFn: () => authService.getUserById(userId),
+    retry: false,
+  })
+}
+
+export const useChangeProfile = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: authService.changeProfile,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['profile'])
     },
   })
 }

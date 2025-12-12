@@ -2,11 +2,11 @@ export const getFilterTypes = (t) => ({
   players: {
     name: t('filters.players.title'),
     values: [
-      { text: t('filters.players.one'), value: '1' },
-      { text: t('filters.players.two'), value: '2' },
+      { text: t('filters.players.one'), value: ',1' },
+      { text: t('filters.players.two'), value: ',2' },
       { text: t('filters.players.threeFour'), value: '3,4' },
       { text: t('filters.players.fiveSix'), value: '5,6' },
-      { text: t('filters.players.sevenPlus'), value: '7' },
+      { text: t('filters.players.sevenPlus'), value: '7,' },
     ],
   },
   age: {

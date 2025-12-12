@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { getFooterNavCategories } from '@/consts/footerNavCategories'
 
 export default function Footer() {
-  const t = useTranslations('footer') // namespace footer доступен
+  const t = useTranslations('footer')
   const footerNavCategories = getFooterNavCategories(t)
 
   return (

@@ -27,7 +27,7 @@ export default function ProfileMenu() {
   return isLoading ? (
     <p>Loading...</p>
   ) : user ? (
-    <Link href="/profile" className="text-[14px] font-medium">
+    <Link href={`/user/${user.id}`} className="text-[14px] font-medium">
       {user.username}
     </Link>
   ) : (

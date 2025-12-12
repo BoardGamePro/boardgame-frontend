@@ -4,7 +4,7 @@ import React from 'react'
 import { useTranslations } from 'next-intl'
 import { getFilterTypes } from '@/consts/filterTypes'
 
-export default function AgeCategory() {
+export default function AgeCategory({ value, onChange }) {
   const t = useTranslations()
   const filterTypes = getFilterTypes(t)
 
@@ -14,11 +14,13 @@ export default function AgeCategory() {
         {filterTypes.age.name}
       </h3>
       <fieldset className="mb-[20px] flex flex-col gap-[10px]">
-        {filterTypes.age.values.map(({ text, value }, index) => (
-          <label key={`${value}-${index}`} className="flex gap-[8px]">
+        {filterTypes.age.values.map(({ text, value: val }, index) => (
+          <label key={`${val}-${index}`} className="flex gap-[8px]">
             <input
               type="radio"
-              value={value}
+              value={val}
+              onChange={() => onChange(val)}
+              checked={val === value}
               name="age"
               className="h-[16px] w-[16px] accent-(--color-accent)"
             />
