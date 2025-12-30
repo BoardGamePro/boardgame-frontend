@@ -2,7 +2,10 @@
 import React, { useEffect, useMemo, useState } from 'react'
 
 export default function GameNav() {
-  const sections = useMemo(() => ['Description', 'Images', 'Sources'], [])
+  const sections = useMemo(
+    () => ['Description', 'Images', 'Sources', 'Files'],
+    []
+  )
   const [active, setActive] = useState('Description')
 
   useEffect(() => {

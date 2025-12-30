@@ -48,6 +48,20 @@ export const authService = {
       is_collection_public: isPublicCollection,
     })
   },
+
+  getNotes: async ({ gameName, page }) => {
+    const res = await api.get(`/comments/?game_name=${gameName}&page=${page}`)
+
+    return res.data
+  },
+
+  addNote: async ({ gameName, page, text }) => {
+    await api.post('/comments/', {
+      game_name: gameName,
+      page: String(page),
+      comment_text: text,
+    })
+  },
 }
 
 export const useRegister = () => {
@@ -95,6 +109,25 @@ export const useChangeProfile = () => {
     mutationFn: authService.changeProfile,
     onSuccess: () => {
       queryClient.invalidateQueries(['profile'])
+    },
+  })
+}
+
+export const useGetNotes = ({ gameName, page }) => {
+  return useQuery({
+    queryKey: ['page', page],
+    queryFn: () => authService.getNotes({ gameName, page }),
+    retry: false,
+  })
+}
+
+export const useAddNote = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: authService.addNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['page'])
     },
   })
 }

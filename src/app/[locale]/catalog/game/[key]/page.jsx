@@ -1,14 +1,17 @@
 import PageLayout from '@/components/layouts/PageLayout'
+import FileCard from '@/components/ui/FileCard'
 import GameHeader from '@/components/ui/GameHeader/GameHeader'
 import GameImagesSection from '@/components/ui/GameImagesSection'
 import GameNav from '@/components/ui/GameNav'
 import GameSection from '@/components/ui/GameSection'
 import SourceCard from '@/components/ui/SourceCard'
+import { rules } from '@/mocks/rules-mocks'
 import { getTranslations } from 'next-intl/server'
 
 export default async function GamePage({ params }) {
   const { locale, key } = await params
   const t = await getTranslations({ locale, namespace: 'gamePage' })
+  const files = rules
 
   const res = await fetch(
     `${process.env.GAMES_API_URL}/games/${encodeURIComponent(key)}?language=${locale}`,
@@ -63,6 +66,18 @@ export default async function GamePage({ params }) {
             ))}
           </div>
         </GameSection>
+
+        {files.find((file) => file.game === key) && (
+          <GameSection title="Files" sectionId="Files">
+            <div className="flex gap-[40px]">
+              {files
+                .find((file) => file.game === key)
+                ?.rules.map((rule) => (
+                  <FileCard fileData={rule} key={rule.id} />
+                ))}
+            </div>
+          </GameSection>
+        )}
       </div>
     </PageLayout>
   )
