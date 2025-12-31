@@ -1,16 +1,21 @@
 'use client'
 
 import GridSwitcher from '@/components/ui/GridSwitcher'
-import React, { useEffect, useState } from 'react'
-import GameCard from '../GameCard'
-import { sortingTypes } from '@/consts/sortingTypes'
 import CatalogPageSwitcher from '@/components/ui/CatalogPageSwitcher/CatalogPageSwitcher'
+import GameCard from '../GameCard'
+import { getSortingTypes } from '@/consts/sortingTypes'
+import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from '@/i18n/navigation'
+import React, { useState, useEffect } from 'react'
 
 export default function GamesGrid({ games, sortBy }) {
+  const t = useTranslations('sorting')
+  const sortingTypes = getSortingTypes(t)
+
   const searchParams = useSearchParams()
   const router = useRouter()
+
   const [viewMode, setViewMode] = useState('grid')
   const [sortState, setSortState] = useState({
     selectedSort: null,

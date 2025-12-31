@@ -14,6 +14,7 @@ export default function AuthRegisterPopup({
     username: '',
     email: '',
     password: '',
+    confirmPassword: '',
   })
 
   const registerMutation = useRegister()
@@ -39,10 +40,10 @@ export default function AuthRegisterPopup({
     <div className="w-full">
       {/* Title */}
       <h2 className="h-[25px] text-center text-[18px] font-semibold">
-        Create your account
+        {t('signUp')}
       </h2>
       <p className="mt-[30px] h-[24px] text-center text-[15px] font-normal text-(--color-text-gray)">
-        Join the community and track your favorite games.
+        {t('registerHint')}
       </p>
 
       <form
@@ -52,7 +53,7 @@ export default function AuthRegisterPopup({
         {/* Username */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Username
+            {t('username')}
           </label>
           <Input
             placeholder={t('Enter your username')}
@@ -65,7 +66,7 @@ export default function AuthRegisterPopup({
         {/* Email */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Email
+            {t('email')}
           </label>
           <Input
             placeholder={t('Enter your email')}
@@ -78,7 +79,7 @@ export default function AuthRegisterPopup({
         {/* Password */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Password
+            {t('password')}
           </label>
           <InputPassword
             placeholder={t('Enter your password')}
@@ -88,14 +89,15 @@ export default function AuthRegisterPopup({
           />
         </div>
 
+        {/* Confirm Password */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Confirm password
+            {t('Confirm your password')}
           </label>
           <InputPassword
             placeholder={t('Confirm your password')}
-            value={userData.password}
-            setValue={(value) => setData(value, 'password')}
+            value={userData.confirmPassword}
+            setValue={(value) => setData(value, 'confirmPassword')}
             icon="/icons/lock.svg"
           />
         </div>
@@ -107,13 +109,13 @@ export default function AuthRegisterPopup({
 
         {/* Bottom switch */}
         <div className="h-[24px] text-center text-[14px] text-(--color-text-gray)">
-          Already have an account?{' '}
+          {t('loginHint')}{' '}
           <button
             type="button"
             onClick={changeAuthState}
             className="font-semibold text-(--color-text-default)"
           >
-            Log in!
+            {t('linkToLogin')}
           </button>
         </div>
       </form>

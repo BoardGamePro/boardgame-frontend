@@ -6,7 +6,6 @@ import { getTranslations } from 'next-intl/server'
 export default async function CatalogPage({ params, searchParams }) {
   const { locale } = await params
   const { page, sortBy, players, age, minYear, maxYear } = await searchParams
-  // TODO: добавить сортировку по рейтингу, когда она появится в API
   const t = await getTranslations({ locale, namespace: 'catalog' })
   const gamesPerPage = 9
 
