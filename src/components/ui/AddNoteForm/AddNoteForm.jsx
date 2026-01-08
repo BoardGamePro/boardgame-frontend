@@ -15,7 +15,7 @@ export default function AddNoteForm({ gameName, page, onFormCancel }) {
 
     try {
       if (noteTitle && noteText) {
-        addNote({ gameName, page, text: noteText })
+        addNote({ gameName, page, text: noteText, title: noteTitle })
         onFormCancel()
       }
     } catch (err) {

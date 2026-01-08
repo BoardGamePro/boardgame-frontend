@@ -49,7 +49,7 @@ export default function GamesGrid({ games, sortBy }) {
 
   return (
     <div
-      className={`grid gap-[30px] ${viewMode === 'grid' ? 'grid-cols-3' : 'grid-cols-1'}`}
+      className={`grid gap-[30px] ${viewMode === 'grid' ? 'grid-cols-3' : 'grid-cols-1'} h-fit`}
     >
       <div className="col-span-full flex items-center">
         <div className="flex gap-[20px] text-[12px] text-(--color-text-gray)">

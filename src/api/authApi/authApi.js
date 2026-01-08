@@ -55,11 +55,12 @@ export const authService = {
     return res.data
   },
 
-  addNote: async ({ gameName, page, text }) => {
+  addNote: async ({ gameName, page, text, title }) => {
     await api.post('/comments/', {
       game_name: gameName,
       page: String(page),
       comment_text: text,
+      title,
     })
   },
 }

@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import AuthPopup from '../AuthPopup'
 import { useAuth } from '@/app/[locale]/AuthProvider'
 import { Link } from '@/i18n/navigation'
+import Image from 'next/image'
 
 export default function ProfileMenu() {
   const [authPopusIsActive, setAuthPopupIsActive] = useState(false)
@@ -27,7 +28,11 @@ export default function ProfileMenu() {
   return isLoading ? (
     <p>Loading...</p>
   ) : user ? (
-    <Link href={`/user/${user.id}`} className="text-[14px] font-medium">
+    <Link
+      href={`/user/${user.id}`}
+      className="!flex items-center gap-[10px] text-[14px] font-medium"
+    >
+      <Image src="/avatar.png" alt="avatar" width={40} height={40} />
       {user.username}
     </Link>
   ) : (

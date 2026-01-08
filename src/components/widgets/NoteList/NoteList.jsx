@@ -47,8 +47,8 @@ export default function NoteList({ page, gameName }) {
         )}
         {isLoading ? (
           <p className="m-auto">Loading ...</p>
-        ) : notes.length > 0 ? (
-          notes.map((note) => (
+        ) : notes?.length > 0 ? (
+          notes?.map((note) => (
             <Note
               key={note.id}
               noteData={note}

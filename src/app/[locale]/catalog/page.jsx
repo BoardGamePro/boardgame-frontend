@@ -5,7 +5,8 @@ import { getTranslations } from 'next-intl/server'
 
 export default async function CatalogPage({ params, searchParams }) {
   const { locale } = await params
-  const { page, sortBy, players, age, minYear, maxYear } = await searchParams
+  const { page, sortBy, players, age, minYear, maxYear, search } =
+    await searchParams
   // TODO: добавить сортировку по рейтингу, когда она появится в API
   const t = await getTranslations({ locale, namespace: 'catalog' })
   const gamesPerPage = 9
@@ -22,6 +23,9 @@ export default async function CatalogPage({ params, searchParams }) {
   if (age) url.searchParams.set('filter-by-age', age)
   if (minYear || maxYear) {
     url.searchParams.set('filter-by-year', `${minYear || ''},${maxYear || ''}`)
+  }
+  if (search) {
+    url.searchParams.set('filter-by-text', search)
   }
 
   const res = await fetch(url.toString(), { next: { revalidate: 300 } })
