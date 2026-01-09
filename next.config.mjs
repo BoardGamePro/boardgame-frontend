@@ -1,4 +1,9 @@
 import createNextIntlPlugin from 'next-intl/plugin'
+import { fileURLToPath } from 'url'
+import { dirname, resolve } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,8 +25,8 @@ const nextConfig = {
     if (!isServer) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        canvas: false,
-        encoding: false,
+        canvas: resolve(__dirname, 'empty-module.js'),
+        encoding: resolve(__dirname, 'empty-module.js'),
       }
     }
     return config
