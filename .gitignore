@@ -42,3 +42,4 @@ next-env.d.ts
 
 mocks
 public/rules
+public/pdf.worker.min.js

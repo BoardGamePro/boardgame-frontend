@@ -48,7 +48,7 @@ export default function PdfViewer({ fileUrl, title, gameName }) {
       </div>
 
       <div className="flex overflow-hidden">
-        <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+        <Worker workerUrl="/pdf.worker.min.js">
           <div className="flex max-w-[80%] flex-1 overflow-hidden border border-[#E5E5E5] bg-transparent">
             <ThumbnailSidebar
               thumbnailPluginInstance={thumbnailPluginInstance}

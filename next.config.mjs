@@ -16,6 +16,22 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        canvas: false,
+        encoding: false,
+      }
+    }
+    return config
+  },
+  turbopack: {
+    resolveAlias: {
+      canvas: './empty-module.js',
+      encoding: './empty-module.js',
+    },
+  },
 }
 
 const withNextIntl = createNextIntlPlugin()
