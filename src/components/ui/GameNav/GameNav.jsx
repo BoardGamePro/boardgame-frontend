@@ -1,11 +1,20 @@
 'use client'
 import React, { useEffect, useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function GameNav() {
+  const t = useTranslations('gamenavigation')
+
   const sections = useMemo(
-    () => ['Description', 'Images', 'Sources', 'Files'],
-    []
+    () => [
+      { id: 'Description', text: t('sectionDescription') },
+      { id: 'Images', text: t('sectionImages') },
+      { id: 'Sources', text: t('sectionSources') },
+      { id: 'Files', text: t('sectionFiles') },
+    ],
+    [t]
   )
+
   const [active, setActive] = useState('Description')
 
   useEffect(() => {
@@ -39,7 +48,7 @@ export default function GameNav() {
   return (
     <section>
       <ul className="mb-[25px] flex gap-[20px] text-(--color-neutral-foreground)">
-        {sections.map((id) => (
+        {sections.map(({ id, text }) => (
           <li key={id}>
             <a
               href={`#${id}`}
@@ -48,7 +57,7 @@ export default function GameNav() {
                 'border-b-2 border-[#5368BF] font-semibold text-[#242424]'
               }`}
             >
-              {id}
+              {text}
             </a>
           </li>
         ))}

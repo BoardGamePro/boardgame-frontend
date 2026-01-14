@@ -1,8 +1,9 @@
 'use client'
 
-import { filterTypes } from '@/consts/filterTypes'
+import { useFilterTypes } from '@/consts/filterTypes'
 
 export default function YearCategory({ value, onChange }) {
+  const filterTypes = useFilterTypes()
   const { minYear, maxYear } = value
 
   return (

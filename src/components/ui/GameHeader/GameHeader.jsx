@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function GameHeader({ preview, gameinfo }) {
+  const t = useTranslations('gameCard')
+
   const {
     title,
     releaseYear,
@@ -56,7 +59,10 @@ export default function GameHeader({ preview, gameinfo }) {
               alt="players-icon"
             />
             <p className="text-[16px]">
-              {minimumPlayers}-{maximumPlayers} Players
+              {t('playersCount', {
+                playerFrom: minimumPlayers,
+                playerTo: maximumPlayers,
+              })}
             </p>
           </div>
           <div className="flex gap-[10px]">

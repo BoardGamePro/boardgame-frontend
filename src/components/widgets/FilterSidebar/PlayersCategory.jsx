@@ -1,7 +1,9 @@
-import { filterTypes } from '@/consts/filterTypes'
+import { useFilterTypes } from '@/consts/filterTypes'
 import React from 'react'
 
 export default function PlayersCategory({ value, onChange }) {
+  const filterTypes = useFilterTypes()
+
   return (
     <div className="border-b border-[#C7C7C7] px-[20px]">
       <h3 className="mb-[10px] bg-[image:url('/icons/people.svg')] bg-position-[left_center] bg-no-repeat pl-[26px] text-[18px] font-semibold">

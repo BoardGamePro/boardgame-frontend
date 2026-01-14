@@ -4,12 +4,14 @@ import React, { useState } from 'react'
 import Input from '../Input'
 import { useSearchParams } from 'next/navigation'
 import { usePathname, useRouter } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 
 export default function GameSearchInput() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const router = useRouter()
   const [value, setValue] = useState(searchParams.get('search') || '')
+  const t = useTranslations('header')
 
   const onSubmit = (evt) => {
     evt.preventDefault()
@@ -30,7 +32,7 @@ export default function GameSearchInput() {
   return (
     <form className="relative w-[350px]" onSubmit={onSubmit}>
       <Input
-        placeholder="Search by title"
+        placeholder={t('placeholder')}
         icon="/icons/search.svg"
         roundedFull
         iconSize={24}

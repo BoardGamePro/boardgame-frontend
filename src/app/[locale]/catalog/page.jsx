@@ -8,7 +8,7 @@ export default async function CatalogPage({ params, searchParams }) {
   const { page, sortBy, players, age, minYear, maxYear, search } =
     await searchParams
   // TODO: добавить сортировку по рейтингу, когда она появится в API
-  const t = await getTranslations({ locale, namespace: 'catalog' })
+  const t = await getTranslations({ locale, namespace: 'filters' })
   const gamesPerPage = 9
 
   const currentOffset = gamesPerPage * (page - 1)
@@ -41,12 +41,15 @@ export default async function CatalogPage({ params, searchParams }) {
   return (
     <PageLayout>
       <h1 className="text-[32px] font-semibold text-black">{t('title')}</h1>
-      <p className="text-[18px] text-[#595959]">Found {games?.total} games</p>
+      <p className="text-[18px] text-[#595959]">
+        {' '}
+        {t('foundcounter')} {games?.total} {t('gamecounter')}d
+      </p>
 
       <div className="mt-[30px] grid grid-cols-[280px_1fr] gap-[30px]">
         <FilterSidebar />
         {!games || games.result.length === 0 ? (
-          <p>{t('gamesNotFound')}</p>
+          <p>{t('gamesNotFoundcounter')}</p>
         ) : (
           <GamesGrid games={games} sortBy={sortBy || ''} />
         )}

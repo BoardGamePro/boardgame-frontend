@@ -10,18 +10,32 @@ import { getTranslations } from 'next-intl/server'
 
 export default async function GamePage({ params }) {
   const { locale, key } = await params
-  const t = await getTranslations({ locale, namespace: 'gamePage' })
+
+  const tGamePage = await getTranslations({
+    locale,
+    namespace: 'gamePage',
+  })
+
+  const tNav = await getTranslations({
+    locale,
+    namespace: 'gamenavigation',
+  })
+
   const files = rules
 
   const res = await fetch(
-    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(key)}?language=${locale}`,
+    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(
+      key
+    )}?language=${locale}`,
     {
       next: { revalidate: 300 },
     }
   )
 
   const imagesRes = await fetch(
-    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(key)}/images?limit=100`,
+    `${process.env.GAMES_API_URL}/games/${encodeURIComponent(
+      key
+    )}/images?limit=100`,
     {
       next: { revalidate: 300 },
     }
@@ -30,7 +44,7 @@ export default async function GamePage({ params }) {
   if (!res.ok) {
     return (
       <PageLayout>
-        <h1>{t('gameNotFound')}</h1>
+        <h1>{tGamePage('gameNotFound')}</h1>
       </PageLayout>
     )
   }
@@ -53,13 +67,14 @@ export default async function GamePage({ params }) {
       <div className="w-full max-w-[1200px]">
         <GameHeader preview={preview} gameinfo={game} />
         <GameNav />
-        <GameSection title={t('gameDescription')} sectionId="Description">
+
+        <GameSection title={tNav('sectionDescription')} sectionId="Description">
           <p>{game.description}</p>
         </GameSection>
 
         {gallery.length > 0 && <GameImagesSection gallery={gallery} />}
 
-        <GameSection title="Sources" sectionId="Sources">
+        <GameSection title={tNav('sectionSources')} sectionId="Sources">
           <div className="flex gap-[40px]">
             {game.sources?.map((source) => (
               <SourceCard sourceInfo={source} key={source.siteKey} />
@@ -68,7 +83,7 @@ export default async function GamePage({ params }) {
         </GameSection>
 
         {files.find((file) => file.game === key) && (
-          <GameSection title="Files" sectionId="Files">
+          <GameSection title={tNav('sectionFiles')} sectionId="Files">
             <div className="flex gap-[40px]">
               {files
                 .find((file) => file.game === key)

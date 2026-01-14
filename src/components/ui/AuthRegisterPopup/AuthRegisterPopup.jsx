@@ -39,10 +39,10 @@ export default function AuthRegisterPopup({
     <div className="w-full">
       {/* Title */}
       <h2 className="h-[25px] text-center text-[18px] font-semibold">
-        Create your account
+        {t('registertitle')}
       </h2>
       <p className="mt-[30px] h-[24px] text-center text-[15px] font-normal text-(--color-text-gray)">
-        Join the community and track your favorite games.
+        {t('accessHint')}
       </p>
 
       <form
@@ -52,10 +52,10 @@ export default function AuthRegisterPopup({
         {/* Username */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Username
+            {t('usernameLabel')}
           </label>
           <Input
-            placeholder={t('Enter your username')}
+            placeholder={t('usernamePlaceholder')}
             value={userData.username}
             setValue={(value) => setData(value, 'username')}
             icon="/icons/envelope.svg"
@@ -65,10 +65,10 @@ export default function AuthRegisterPopup({
         {/* Email */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Email
+            {t('emailLabel')}
           </label>
           <Input
-            placeholder={t('Enter your email')}
+            placeholder={t('emailPlaceholder')}
             value={userData.email}
             setValue={(value) => setData(value, 'email')}
             icon="/icons/envelope.svg"
@@ -78,42 +78,43 @@ export default function AuthRegisterPopup({
         {/* Password */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Password
+            {t('passwordLabel')}
           </label>
           <InputPassword
-            placeholder={t('Enter your password')}
+            placeholder={t('passwordPlaceholder')}
             value={userData.password}
             setValue={(value) => setData(value, 'password')}
             icon="/icons/lock.svg"
           />
         </div>
 
+        {/* Confirm Password */}
         <div>
           <label className="mb-[5px] block h-[17px] text-[14px] font-semibold text-(--foreground)">
-            Confirm password
+            {t('confirmPasswordLabel')}
           </label>
           <InputPassword
-            placeholder={t('Confirm your password')}
-            value={userData.password}
-            setValue={(value) => setData(value, 'password')}
+            placeholder={t('confirmPasswordPlaceholder')}
+            value={userData.confirmPassword}
+            setValue={(value) => setData(value, 'confirmPassword')}
             icon="/icons/lock.svg"
           />
         </div>
 
-        {/* Button */}
+        {/* Submit Button */}
         <button className="flex h-[35px] w-[180px] items-center justify-center self-center rounded-[4px] bg-(--color-accent) px-[16px] py-[4px] text-[14px] leading-[16px] font-medium text-white">
-          {t('signUp')}
+          {t('submitButton')}
         </button>
 
         {/* Bottom switch */}
         <div className="h-[24px] text-center text-[14px] text-(--color-text-gray)">
-          Already have an account?{' '}
+          {t('loginHintText')}{' '}
           <button
             type="button"
             onClick={changeAuthState}
             className="font-semibold text-(--color-text-default)"
           >
-            Log in!
+            {t('loginLink')}
           </button>
         </div>
       </form>

@@ -1,10 +1,16 @@
-export const sortingTypes = [
-  {
-    text: 'by rating',
-    value: 'rating',
-  },
-  {
-    text: 'by year',
-    value: 'year',
-  },
-]
+import { useTranslations } from 'next-intl'
+
+export function useSortingTypes() {
+  const t = useTranslations('sorting')
+
+  return [
+    {
+      text: t('byRating'),
+      value: 'rating',
+    },
+    {
+      text: t('byYear'),
+      value: 'year',
+    },
+  ]
+}

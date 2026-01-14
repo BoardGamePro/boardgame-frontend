@@ -1,9 +1,11 @@
-import { footerNavCategories } from '@/consts/footerNavCategories'
 import React from 'react'
 import FooterNavCategory from './FooterNavCategory'
 import { Link } from '@/i18n/navigation'
+import { useFooterNavCategories } from '@/consts/footerNavCategories'
 
 export default function Footer() {
+  const footerNavCategories = useFooterNavCategories()
+
   return (
     <footer className="bg-[#101828] px-[calc((100%-1200px)/2)] pt-[60px] pb-[50px] text-white">
       <div className="mb-[50px] flex gap-[276px]">
