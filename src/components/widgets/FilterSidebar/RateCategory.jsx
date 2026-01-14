@@ -1,9 +1,11 @@
 'use client'
 
-import { filterTypes } from '@/consts/filterTypes'
+import { useFilterTypes } from '@/consts/filterTypes'
 import React from 'react'
 
 export default function RateCategory({ value, onChange }) {
+  const filterTypes = useFilterTypes()
+
   return (
     <div className="px-[20px]">
       <h3 className="mb-[10px] bg-[image:url('/icons/star-filter.svg')] bg-position-[left_center] bg-no-repeat pl-[26px] text-[18px] font-semibold">

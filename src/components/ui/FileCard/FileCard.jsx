@@ -2,11 +2,13 @@
 
 import { Link, usePathname } from '@/i18n/navigation'
 import Image from 'next/image'
-
+import { useTranslations } from 'next-intl'
 import React from 'react'
 
 export default function FileCard({ fileData }) {
   const pathname = usePathname()
+  const t = useTranslations('gamenavigation')
+
   return (
     <div className="w-1/2 rounded-[8px] border border-[#E5E5E5] bg-white p-[20px] shadow-[0px_4px_8px_rgba(142,141,208,0.16)]">
       <div className="mb-[20px] flex items-center justify-between">
@@ -22,11 +24,12 @@ export default function FileCard({ fileData }) {
               {fileData.name}
             </h3>
             <p className="text-[12px] text-(--color-text-gray)">
-              {fileData.description}
+              {t(fileData.descriptionKey)}
             </p>
           </div>
         </div>
       </div>
+
       <div className="flex gap-[40px]">
         {fileData.format === 'pdf' && (
           <Link
@@ -34,7 +37,7 @@ export default function FileCard({ fileData }) {
             className="!flex w-[255px] items-center justify-center rounded-[4px] border border-[#E5E5E5] py-[7.5px] text-[14px] font-medium text-(--color-text-default)"
           >
             <p className="flex items-center bg-[url(/icons/view-icon.svg)] bg-[left_center] bg-no-repeat pl-[40px] !text-[14px]/[20px]">
-              View
+              {t('sectionView')}
             </p>
           </Link>
         )}
@@ -44,7 +47,7 @@ export default function FileCard({ fileData }) {
           className="!flex w-[255px] items-center justify-center rounded-[4px] border border-[#E5E5E5] px-[74px] py-[7.5px] text-[14px] font-medium text-(--color-text-default)"
         >
           <p className="flex items-center bg-[url(/icons/download-icon.svg)] bg-[left_center] bg-no-repeat pl-[40px] !text-[14px]/[20px]">
-            Download
+            {t('sectionDownload')}
           </p>
         </a>
       </div>

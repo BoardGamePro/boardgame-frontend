@@ -4,15 +4,17 @@ import React, { useState } from 'react'
 import GameSection from '../GameSection'
 import Image from 'next/image'
 import { getPreviewImages } from '@/utils/imagesSlider'
+import { useTranslations } from 'next-intl'
 
 export default function GameImagesSection({ gallery }) {
   const [currentImageId, setCurrentImageId] = useState(0)
+  const t = useTranslations('gamenavigation')
 
   const previewsSize = 5
   const previews = getPreviewImages(gallery, previewsSize, currentImageId)
 
   return (
-    <GameSection title="Images" sectionId="Images">
+    <GameSection title={t('sectionImages')} sectionId="Images">
       <div className="relative mb-[20px] flex h-[450px] items-center justify-between">
         <button
           className="flex h-[60px] w-[60px] items-center justify-center"
@@ -75,7 +77,10 @@ export default function GameImagesSection({ gallery }) {
       </div>
 
       <p className="mb-[20px] text-center text-[12px] text-(--color-text-gray)">
-        Image {currentImageId + 1} of {gallery.length}
+        {t('counter', {
+          current: currentImageId + 1,
+          total: gallery.length,
+        })}
       </p>
 
       <div className="flex flex-wrap justify-center gap-[20px]">

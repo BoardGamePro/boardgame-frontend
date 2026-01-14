@@ -1,21 +1,24 @@
 import Image from 'next/image'
 import React from 'react'
 import { Link } from '@/i18n/navigation'
+import { useTranslations } from 'next-intl'
 
 export default function SourceCard({ sourceInfo }) {
+  const t = useTranslations('gamenavigation')
+
   const { site, siteUrl, siteRating } = sourceInfo
+
   const sites = {
     bgg: {
       name: 'Board Game Geek',
       shortName: 'BGG',
-      description: "The world's largest board game database",
     },
     tesera: {
       name: 'Tesera.ru',
       shortName: 'Tesera',
-      description: 'Russian board game community and database',
     },
   }
+
   return (
     <div className="w-full rounded-[8px] border border-[#E5E5E5] bg-white p-[20px] shadow-[0px_4px_8px_rgba(142,141,208,0.16)]">
       <div className="mb-[20px] flex items-center justify-between">
@@ -26,10 +29,11 @@ export default function SourceCard({ sourceInfo }) {
               {sites[site].name}
             </h3>
             <p className="text-[12px] text-(--color-text-gray)">
-              {sites[site].description}
+              {t(`${site}Description`)}
             </p>
           </div>
         </div>
+
         <div className="flex items-center gap-[10px]">
           <svg
             width="22"
@@ -46,12 +50,14 @@ export default function SourceCard({ sourceInfo }) {
               strokeLinejoin="round"
             />
           </svg>
+
           <p className="text-[16px] text-(--color-text-default)">
             {Number(siteRating).toFixed(1)}
             <span className="text-[12px] text-(--color-text-gray)">/10</span>
           </p>
         </div>
       </div>
+
       <Link
         href={siteUrl}
         className="!flex w-full items-center justify-center rounded-[4px] border border-[#E5E5E5] text-[14px] font-medium text-(--color-text-default)"

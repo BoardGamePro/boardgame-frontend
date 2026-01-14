@@ -5,12 +5,14 @@ import { useAuth } from '@/app/[locale]/AuthProvider'
 import AddNoteForm from '@/components/ui/AddNoteForm'
 import Note from '@/components/ui/Note'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function NoteList({ page, gameName }) {
   const [openNoteId, setOpenNoteId] = useState(null)
   const [isAddNoteFormOpen, setIsAddNoteFormOpen] = useState(false)
   const { data: notes, isLoading } = useGetNotes({ gameName, page })
   const { user } = useAuth()
+  const t = useTranslations('notes')
 
   return (
     <div className="w-full max-w-[20%] border border-[#E5E5E5] p-[10px]">
@@ -34,7 +36,7 @@ export default function NoteList({ page, gameName }) {
               fill="#212121"
             />
           </svg>
-          <p className="text-[12px]/[16px] font-medium">Add note</p>
+          <p className="text-[12px]/[16px] font-medium"> {t('addNote')}</p>
         </button>
       )}
       <div className="flex h-full flex-col gap-[10px]">
@@ -46,7 +48,7 @@ export default function NoteList({ page, gameName }) {
           />
         )}
         {isLoading ? (
-          <p className="m-auto">Loading ...</p>
+          <p className="m-auto">{t('loading')}</p>
         ) : notes?.length > 0 ? (
           notes?.map((note) => (
             <Note
@@ -59,7 +61,7 @@ export default function NoteList({ page, gameName }) {
             />
           ))
         ) : (
-          <p className="m-auto">There are no notes on this page yet.</p>
+          <p className="m-auto">{t('empty')}</p>
         )}
       </div>
     </div>

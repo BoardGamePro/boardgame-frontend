@@ -7,7 +7,8 @@
   },
 
   "gameCard": {
-    "linkButton": "Перейти"
+    "linkButton": "Перейти",
+    "playersCount": "{playerFrom} - {playerTo} игроков"
   },
 
   "gamePage": {
@@ -22,31 +23,157 @@
 
   "header": {
     "signUpButton": "Зарегистрироваться",
-    "loginButton": "Войти"
+    "loginButton": "Войти",
+    "placeholder": "Поиск по названию"
   },
 
   "loginPopup": {
-    "username": "Почта или имя пользователя",
-    "password": "Пароль",
-    "registerHint": "У вас нет аккаунта?",
-    "linkToRegister": "Зарегистрироваться!",
-    "login": "Войти",
-    "Enter your email or username": "Введите почту или имя пользователя",
-    "Enter your password": "Введите пароль",
-    "signIn": "Войти",
-    "Forgot password?": "Забыли пароль?"
+    "logintitle": "Войдите в свой аккаунт",
+    "usernameLabel": "Почта или имя пользователя",
+    "passwordLabel": "Пароль",
+    "usernamePlaceholder": "Введите почту или имя пользователя",
+    "passwordPlaceholder": "Введите пароль",
+    "loginButton": "Войти",
+    "signInButton": "Войти",
+    "forgotPasswordLink": "Забыли пароль?",
+    "registerHintText": "У вас нет аккаунта?",
+    "registerLink": "Зарегистрироваться!",
+    "accessHint": "Получите доступ к сохранённым играм, рейтингам и избранному"
   },
 
   "registerPopup": {
+    "registertitle": "Создайте ваш аккаунт",
+    "accessHint": "Присоединяйтесь к сообществу и следите за своими любимыми играми.",
+    "usernameLabel": "Имя пользователя",
+    "emailLabel": "Электронная почта",
+    "passwordLabel": "Пароль",
+    "confirmPasswordLabel": "Подтвердите пароль",
+    "usernamePlaceholder": "Введите имя пользователя",
+    "emailPlaceholder": "Введите вашу почту",
+    "passwordPlaceholder": "Введите пароль",
+    "confirmPasswordPlaceholder": "Подтвердите пароль",
+    "submitButton": "Зарегистрироваться",
+    "loginHintText": "Уже есть аккаунт?",
+    "loginLink": "Войти"
+  },
+
+  "mainPage": {
+    "heroTitlePrimary": "Найдите, Изучайте и Играйте в Любую",
+    "heroTitleSecondary": "Настольную Игру",
+    "heroSubtitle": "Спросите нашего ИИ-ассистента, изучайте правила и присоединяйтесь к сообществу увлечённых игроков.",
+    "askAiButton": "Спросить ИИ об игре",
+    "popularGamesButton": "Популярные игры",
+    "browseCategoriesButton": "Категории",
+    "mainImageAlt": "главное изображение",
+    "aiSectionLabel": "ИИ-ассистент игр",
+    "aiSectionTitle": "Запутались в правилах? Спросите ИИ-ассистента!",
+    "aiSectionDescription": "Получайте мгновенные ответы о правилах, стратегиях и уточнениях от нашего интеллектуального помощника.",
+    "tryAiButton": "Попробовать ИИ-ассистента!",
+    "featureInstant": "Мгновенные ответы",
+    "featureClarifications": "Пояснения правил",
+    "featureStrategy": "Советы по стратегии",
+    "chatUserLabel": "Вы",
+    "chatQuestionExample": "Как выиграть в Уно?",
+    "chatAiLabel": "ИИ-ассистент",
+    "chatAnswerExample": "Старайтесь как можно раньше избавляться от карт с большим числом очков...",
+    "chatThinking": "Думаю ...",
+    "recommendedTitle": "Рекомендуется для Вас",
+    "recommendedSubtitle": "Персонализированные рекомендации игр, основанные на ваших предпочтениях"
+  },
+
+  "sorting": {
+    "byRating": "По рейтингу",
+    "byYear": "По году"
+  },
+
+  "gamenavigation": {
+    "sectionDescription": "Описание",
+    "sectionImages": "Изображения",
+    "sectionSources": "Источники",
+    "sectionFiles": "Файлы",
+    "counter": "Изображение {current} из {total}",
+    "bggDescription": "Крупнейшая в мире база данных настольных игр",
+    "teseraDescription": "Российское сообщество и база данных настольных игр",
+    "sectionView": "Просмотреть",
+    "sectionDownload": "Скачать",
+    "spiritIslandRules": "Полный набор правил игры, включая подготовку, последовательность ходов и подсчёт очков в конце игры.",
+    "johnCompanyRules": "Полный набор правил игры, включая подготовку, последовательность ходов и подсчёт очков в конце игры."
+  },
+
+  "profile": {
+    "loading": "Загрузка...",
+    "editProfile": "Редактировать профиль",
+    "privacySettings": "Настройки приватности",
+    "publicProfile": "Публичный профиль",
+    "publicProfileDesc": "Разрешить другим пользователям видеть информацию о вашем профиле, включая биографию и имя пользователя",
+    "publicCollection": "Публичная коллекция",
+    "publicCollectionDesc": "Сделать вашу коллекцию настольных игр видимой для всех на платформе",
+    "aboutMe": "О себе",
+    "noBio": "Вы ещё не написали свою биографию",
     "email": "Почта",
-    "username": "Имя пользователя",
-    "password": "Пароль",
-    "loginHint": "У вас есть аккаунт?",
-    "linkToLogin": "Войти",
-    "signUp": "Зарегистрироваться",
-    "Enter your username": "Введите имя пользователя",
-    "Enter your email": "Введите вашу почту",
-    "Enter your password": "Введите пароль",
-    "Confirm your password": "Подтвердите пароль"
+    "logout": "Выйти"
+  },
+
+  "notes": {
+    "addNote": "Добавить заметку",
+    "loading": "Загрузка ...",
+    "empty": "На этой странице пока нет заметок."
+  },
+
+  "filters": {
+    "title": "Фильтры",
+    "resetButton": "Сбросить",
+    "applyButton": "Применить",
+    "foundcounter": "Найдено",
+    "gamecounter": "игр",
+
+    "players": {
+      "title": "Количество игроков",
+      "one": "1 игрок",
+      "two": "2 игрока",
+      "threeToFour": "3–4 игрока",
+      "fiveToSix": "5–6 игроков",
+      "sevenPlus": "7+ игроков"
+    },
+
+    "age": {
+      "title": "Возраст",
+      "sixPlus": "6+",
+      "eightPlus": "8+",
+      "tenPlus": "10+",
+      "twelvePlus": "12+",
+      "fourteenPlus": "14+",
+      "sixteenPlus": "16+",
+      "eighteenPlus": "18+"
+    },
+
+    "year": {
+      "title": "Год"
+    },
+
+    "rating": {
+      "title": "Рейтинг"
+    }
+  },
+
+  "footer": {
+    "about": {
+      "sectionTitle": "О ПРОЕКТЕ",
+      "aboutProjectLink": "О проекте",
+      "teamLink": "Команда"
+    },
+
+    "policies": {
+      "sectionTitle": "ПОЛИТИКИ",
+      "termsLink": "Пользовательское соглашение",
+      "privacyLink": "Политика конфиденциальности",
+      "sourcesLink": "Источники данных"
+    },
+
+    "contacts": {
+      "sectionTitle": "КОНТАКТЫ",
+      "feedbackLink": "Форма обратной связи",
+      "supportLink": "Поддержка по Email"
+    }
   }
 }

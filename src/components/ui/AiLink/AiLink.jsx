@@ -1,7 +1,10 @@
 import { Link } from '@/i18n/navigation'
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function AiLink() {
+  const t = useTranslations('mainPage')
+
   return (
     <Link
       href="/ai"
@@ -27,7 +30,7 @@ export default function AiLink() {
           fill="white"
         />
       </svg>
-      AI Assistant
+      {t('chatAiLabel')}
     </Link>
   )
 }

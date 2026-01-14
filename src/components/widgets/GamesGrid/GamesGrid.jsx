@@ -3,12 +3,13 @@
 import GridSwitcher from '@/components/ui/GridSwitcher'
 import React, { useEffect, useState } from 'react'
 import GameCard from '../GameCard'
-import { sortingTypes } from '@/consts/sortingTypes'
+import { useSortingTypes } from '@/consts/sortingTypes'
 import CatalogPageSwitcher from '@/components/ui/CatalogPageSwitcher/CatalogPageSwitcher'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from '@/i18n/navigation'
 
 export default function GamesGrid({ games, sortBy }) {
+  const sortingTypes = useSortingTypes()
   const searchParams = useSearchParams()
   const router = useRouter()
   const [viewMode, setViewMode] = useState('grid')
