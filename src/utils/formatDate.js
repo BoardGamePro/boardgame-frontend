@@ -1,4 +1,4 @@
-export function formatDate(isoString) {
+export function formatDate(isoString, locale = 'ru') {
   const date = new Date(isoString)
 
   const options = {
@@ -8,10 +8,16 @@ export function formatDate(isoString) {
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
-    timeZone: 'UTC',
+    timeZone: undefined,
   }
 
-  const formatted = new Intl.DateTimeFormat('en-US', options).format(date)
+  const localeCode = locale === 'ru' ? 'ru-RU' : 'en-US'
 
-  return formatted.replace(',', ' at')
+  const formatted = new Intl.DateTimeFormat(localeCode, options).format(date)
+
+  if (locale === 'ru') {
+    return formatted.replace(/,?\s*г\.?,?\s*/, ' г. в ')
+  } else {
+    return formatted.replace(',', ' at')
+  }
 }

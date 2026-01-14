@@ -95,9 +95,7 @@
     "bggDescription": "The world's largest board game database",
     "teseraDescription": "Russian board game community and database",
     "sectionView": "View",
-    "sectionDownload": "Download",
-    "spiritIslandRules": "A complete set of rules for the game, including setup, gameplay sequence, and end-game scoring.",
-    "johnCompanyRules": "A complete set of rules for the game, including setup, gameplay sequence, and end-game scoring."
+    "sectionDownload": "Download"
   },
 
   "profile": {

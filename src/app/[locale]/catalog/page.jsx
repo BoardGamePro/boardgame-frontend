@@ -43,7 +43,7 @@ export default async function CatalogPage({ params, searchParams }) {
       <h1 className="text-[32px] font-semibold text-black">{t('title')}</h1>
       <p className="text-[18px] text-[#595959]">
         {' '}
-        {t('foundcounter')} {games?.total} {t('gamecounter')}d
+        {t('foundcounter')} {games?.total} {t('gamecounter')}
       </p>
 
       <div className="mt-[30px] grid grid-cols-[280px_1fr] gap-[30px]">

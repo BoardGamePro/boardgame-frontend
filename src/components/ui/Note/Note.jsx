@@ -2,8 +2,11 @@
 
 import { Link } from '@/i18n/navigation'
 import { formatDate } from '@/utils/formatDate'
+import { useParams } from 'next/navigation'
 
 export default function Note({ noteData, isOpen, onToggle }) {
+  const { locale } = useParams()
+
   return isOpen ? (
     <div className="rounded-[8px] border border-[#E5E5E5] bg-white px-[12px] py-[10px]">
       <h3 className="mb-[8px] text-[14px]/[16px] font-medium">
@@ -14,7 +17,7 @@ export default function Note({ noteData, isOpen, onToggle }) {
         <Link href={`/user/${noteData.user_id}`} className="mr-[8px] underline">
           @{noteData.username}
         </Link>
-        <p>{formatDate(noteData.created_at)}</p>
+        <p>{formatDate(noteData.created_at, locale)}</p>
       </div>
     </div>
   ) : (
@@ -25,7 +28,7 @@ export default function Note({ noteData, isOpen, onToggle }) {
         </h3>
         <div className="flex text-[10px]/[16px] text-[#BFBFBF]">
           <p className="mr-[8px]">{noteData.username}</p>
-          <p>{formatDate(noteData.created_at)}</p>
+          <p>{formatDate(noteData.created_at, locale)}</p>
         </div>
       </div>
       <button onClick={onToggle}>

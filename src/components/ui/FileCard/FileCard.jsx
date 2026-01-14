@@ -24,7 +24,7 @@ export default function FileCard({ fileData }) {
               {fileData.name}
             </h3>
             <p className="text-[12px] text-(--color-text-gray)">
-              {t(fileData.descriptionKey)}
+              {fileData.description}
             </p>
           </div>
         </div>
