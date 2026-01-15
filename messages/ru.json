@@ -114,8 +114,16 @@
 
   "notes": {
     "addNote": "Добавить заметку",
-    "loading": "Загрузка ...",
-    "empty": "На этой странице пока нет заметок."
+    "loading": "Загрузка...",
+    "empty": "На этой странице пока нет заметок.",
+
+    "titleLabel": "Заголовок заметки",
+    "titlePlaceholder": "Введите заголовок",
+    "textLabel": "Текст заметки",
+    "textPlaceholder": "Добавьте пояснение...",
+
+    "submitButton": "Сохранить",
+    "cancelButton": "Отмена"
   },
 
   "filters": {
@@ -124,6 +132,7 @@
     "applyButton": "Применить",
     "foundcounter": "Найдено",
     "gamecounter": "игр",
+    "gamesNotFoundcounter": "Игры не найдены.",
 
     "players": {
       "title": "Количество игроков",

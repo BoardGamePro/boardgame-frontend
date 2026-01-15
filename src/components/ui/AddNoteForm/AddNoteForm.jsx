@@ -3,10 +3,12 @@
 import React, { useState } from 'react'
 import Input from '../Input'
 import { useAddNote } from '@/api/authApi/authApi'
+import { useTranslations } from 'next-intl'
 
 export default function AddNoteForm({ gameName, page, onFormCancel }) {
   const [noteTitle, setNoteTitle] = useState('')
   const [noteText, setNoteText] = useState('')
+  const t = useTranslations('notes')
 
   const { mutate: addNote } = useAddNote()
 
@@ -30,10 +32,10 @@ export default function AddNoteForm({ gameName, page, onFormCancel }) {
     >
       <label>
         <h3 className="mb-[8px] !text-[14px]/[16px] font-medium">
-          Title field
+          {t('titleLabel')}
         </h3>
         <Input
-          placeholder="Note title…"
+          placeholder={t('titlePlaceholder')}
           required
           value={noteTitle}
           setValue={setNoteTitle}
@@ -41,10 +43,12 @@ export default function AddNoteForm({ gameName, page, onFormCancel }) {
       </label>
 
       <label>
-        <h3 className="mb-[8px] !text-[14px]/[16px] font-medium">Note field</h3>
+        <h3 className="mb-[8px] !text-[14px]/[16px] font-medium">
+          {t('textLabel')}
+        </h3>
         <textarea
           className="min-h-[100px] w-full resize-none rounded-[8px] border-[1px] border-(--color-text-light-gray-border) bg-white px-[15px] py-[9px] text-[15px] font-normal focus:outline-none"
-          placeholder="Add your clarification..."
+          placeholder={t('textPlaceholder')}
           value={noteText}
           onChange={(evt) => setNoteText(evt.target.value)}
         ></textarea>
@@ -78,7 +82,7 @@ export default function AddNoteForm({ gameName, page, onFormCancel }) {
               </clipPath>
             </defs>
           </svg>
-          Save
+          {t('submitButton')}
         </button>
         <button
           className="flex items-center justify-center gap-[4px] rounded-[4px] border border-[#E5E5E5] bg-white px-[12px] py-[7px] !text-[12px]/[16px] font-medium"
@@ -97,7 +101,7 @@ export default function AddNoteForm({ gameName, page, onFormCancel }) {
               fill="#212121"
             />
           </svg>
-          Cancel
+          {t('cancelButton')}
         </button>
       </div>
     </form>

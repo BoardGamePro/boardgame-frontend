@@ -115,7 +115,15 @@
   "notes": {
     "addNote": "Add note",
     "loading": "Loading ...",
-    "empty": "There are no notes on this page yet."
+    "empty": "There are no notes on this page yet.",
+
+    "titleLabel": "Note title",
+    "titlePlaceholder": "Enter note title",
+    "textLabel": "Note text",
+    "textPlaceholder": "Add your clarification...",
+
+    "submitButton": "Save",
+    "cancelButton": "Cancel"
   },
 
   "filters": {

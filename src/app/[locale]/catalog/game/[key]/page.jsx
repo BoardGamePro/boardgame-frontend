@@ -59,7 +59,6 @@ export default async function GamePage({ params }) {
     .filter((_, index) => index !== 0)
     .map((img, index) => ({ img, id: index }))
 
-  game.categories = ['fantasy', 'mythology', 'battle']
   game.rating = 3.4
 
   return (
